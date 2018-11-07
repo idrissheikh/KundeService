@@ -17,6 +17,8 @@ namespace kontakter.Models
 
         public SpoersmaalContext() { }
         public DbSet<OfteStilteSpoersmaal> FAQ { get; set; }
-        
+        public DbSet<Sporsmaaler> Spoersmaaler { get; set; }
+
+
     }
 }

@@ -17,6 +17,7 @@ namespace kontakter.Controllers
         }
 
 
+
         [Route("api/alle")]
         public JsonResult Index()
         {
@@ -34,5 +35,19 @@ namespace kontakter.Controllers
 
             return new JsonResult(liste);
         }
+
+        [Route("api/registrering")]
+        public JsonResult hentregistrering()
+        {
+            var db = new DBHandler(_context);
+            var liste = db.hentregistrering();
+
+            return new JsonResult(liste);
+        }
+        
+    //      var PersonController = angular.module("personControll",[]);
+    //personContr 
     }
+
+  
 }

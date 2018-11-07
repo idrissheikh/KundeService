@@ -25,5 +25,16 @@ namespace kontakter
             return _context.FAQ.Where(f => f.Kategori == "Betaling").ToList();
         }
 
+        public List<OfteStilteSpoersmaal> hentregistrering()
+        {
+            return _context.FAQ.Where(f => f.Kategori == "Registrering").ToList();
+        }
+
+
+        public List<OfteStilteSpoersmaal> hentspoarsmaaler()
+        {
+            return _context.FAQ.Where(f => f.Kategori == "Betaling").ToList();
+        }
+
     }
 }

@@ -1,10 +1,80 @@
-<div class='container-fluid'>
-  <div class='row'>
-    <div class='col-sm-3'>
-      <app-nav-menu></app-nav-menu>
-    </div>
-    <div class='col-sm-9 body-content'>
-      <router-outlet></router-outlet>
+
+
+<div class="card text-center my-5">
+  <!--*ngIf="visKatogori"-->
+  <!--<div class="col-md-6 col-md-offset-1" *ngIf="visSkjema">
+    <div *ngIf="laster">Laster alternativ.....</div>-->
+
+  <div class="card-body">
+    <div class="jumbotron">
+      <h1 class="display-4">Have Quatstions!</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Har du problemer med Registrering</p>
+              <a [routerLink]='["./registering"]' class="btn btn-primary">Trykk her</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+
+              <p class="card-text">Har du problemer med Betaling</p>
+              <!--<ul>
+                  <li [routerLinkActive]='["link-active"]'><a [routerLink]='["/registereing"]' (click)='collapse()'><i class="icon-home"></i>Registrer</a></li [routerLinkActive]>
+              </ul>-->
+              <!--<button type="submit" *ngIf="skjemaStatus=='Registrere'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>-->
+              <!--<a href="#" class="btn btn-primary">Trykk her</a>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Har du problemer med andre ting</p>
+              <button type="submit" *ngIf="skjemaStatus=='Problemer'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+              <!--<a href="#" class="btn btn-primary">Trykk her</a>-->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Har du problemer med andre ting</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="card-footer text-muted">
+  </div>
+  <!--</div>-->
+
+  <hr />
+  <app-stille-spoarsmaal></app-stille-spoarsmaal>
+  <hr />
+
+  <hr />
+  <app-betaling></app-betaling>
+  <hr />
+
+  <hr />
+  <app-registrering></app-registrering>
+  <hr />
+
 </div>
+
+
+<!--<div>
+  <router-module *ngIf="side"> </router-module>
+</div>-->
+
+
