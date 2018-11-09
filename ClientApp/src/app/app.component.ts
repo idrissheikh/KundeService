@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 //import { Sporsmaaler } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Http, Response } from '@angular/http';
-import "rxjs/add/operator/map";
+import "rxjs/add/operator/map"
 
 @Component({
   selector: 'app-root',
@@ -86,7 +86,9 @@ export class AppComponent {
       Id: [""],
       KundeNavn: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
       Spoersmaal: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
-      Email: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+      Kategori: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+      Svar: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+
     });
 
     this.hetalleSpoarsmaal();
@@ -113,7 +115,7 @@ export class Sporsmaaler {
   Id: number;
   KundeNavn: string;
   Spoersmaal: string;
-  Email: string; 
+  Email: string;
 
 }
 
