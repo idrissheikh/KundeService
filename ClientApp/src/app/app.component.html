@@ -35,15 +35,15 @@
           </div>
         </div>
         <div class="row">
-          <!--<div class="col-sm-6">
+          <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
                 <p class="card-text">Har du problemer med andre ting</p>
-                <button type="submit" *ngIf="skjemaStatus=='Problemer'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-                <button class="btn btn-default" (click)="Problemer()">Tilbake</button>
+                <button type="submit" *ngIf="skjemaStatus=='visalle'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
+                <button class="btn btn-default" (click)="visAlleQ()">Tilbake</button>
               </div>
             </div>
-          </div>-->
+          </div>
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
@@ -147,6 +147,27 @@
 </div>
 
 
+<div class="card text-center my-5" *ngIf="visalle">
+  <div class="col-md-6 col-md-offset-1">
+    <div *ngIf="laster">Laster alternativ.....</div>
+
+    <ul class="list-group" *ngFor="let k of ofteStrilteSpoersmaal">
+      <li class="list-group-item">{{k.id}}</li>
+      <li class="list-group-item">{{k.kategori}}</li>
+      <li class="list-group-item">{{k.spoersmaal}}</li>
+      <li class="list-group-item">{{k.svar}}</li>
+
+
+
+    </ul>
+
+    <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+    <button class="btn btn-default" (click)="ngOnInit()">Tilbake til KundeSevice</button>
+  </div>
+
+
+</div>
+
 <div class="card text-center my-5" *ngIf="visBetalling">
   <div class="col-md-6 col-md-offset-1">
     <div *ngIf="laster">Laster alternativ.....</div>
@@ -162,7 +183,7 @@
     </ul>
 
     <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-    <button class="btn btn-default" (click)="ngOnInit()">Tilbake</button>
+    <button class="btn btn-default" (click)="ngOnInit()">Tilbake til KundeSevice</button>
   </div>
 
 

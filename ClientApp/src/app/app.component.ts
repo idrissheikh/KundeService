@@ -19,6 +19,7 @@ export class AppComponent {
   stillspoarsmaal: boolean;
   public ofteStrilteSpoersmaal: OfteStilteSpoersmaal[];
   skjema: FormGroup
+  visalle: boolean;
 
   visKategoriSide() {
     this.visKatogori = false;
@@ -31,13 +32,25 @@ export class AppComponent {
 
   }
 
+  visAlleQ() {
+    this.visKatogori = false;
+    this.side = false;
+    this.visBetalling = false;
+    this.stillspoarsmaal = false;
+    this.visKundeService = false;
+    this.visalle = true;
+
+
+
+  }
+
   tilbaketilKategori() {
     this.visKatogori = true;
     this.side = false;
     this.visBetalling = false;
     this.stillspoarsmaal = false;
     this.visKundeService = false;
-
+    this.visalle = false;
 
 
   }
@@ -48,6 +61,8 @@ export class AppComponent {
     this.visBetalling = false;
     this.stillspoarsmaal = false;
     this.visKundeService = false;
+    this.visalle = false;
+
 
 
   }
@@ -60,6 +75,8 @@ export class AppComponent {
     this.stillspoarsmaal = false;
     this.visRegistrering = false;
     this.visKundeService = false;
+    this.visalle = false;
+
 
   }
 
@@ -70,6 +87,8 @@ export class AppComponent {
     this.stillspoarsmaal = true;
     this.visRegistrering = false;
     this.visKundeService = false;
+    this.visalle = false;
+
 
   }
 
@@ -79,6 +98,8 @@ export class AppComponent {
     this.visBetalling = false;
     this.stillspoarsmaal = false;
     this.visRegistrering = false;
+    this.visalle = false;
+
   }
 
   constructor(private _http: Http, private fb: FormBuilder) {
