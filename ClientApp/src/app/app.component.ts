@@ -32,6 +32,8 @@ export class AppComponent {
     this.side = true;
     this.visBetalling = false;
     this.stillspoarsmaal = false;
+    this.visKundeService = false;
+
 
 
   }
@@ -41,6 +43,8 @@ export class AppComponent {
     this.side = false;
     this.visBetalling = false;
     this.stillspoarsmaal = false;
+    this.visKundeService = false;
+
 
 
   }
@@ -50,6 +54,7 @@ export class AppComponent {
     this.visKundeService = false;
     this.visBetalling = false;
     this.stillspoarsmaal = false;
+    this.visKundeService = false;
 
 
   }
@@ -61,7 +66,7 @@ export class AppComponent {
     this.visBetalling = true;
     this.stillspoarsmaal = false;
     this.visRegistrering = false;
-
+    this.visKundeService = false;
 
   }
 
@@ -71,7 +76,16 @@ export class AppComponent {
     this.visBetalling = false;
     this.stillspoarsmaal = true;
     this.visRegistrering = false;
+    this.visKundeService = false;
 
+  }
+
+  ngOnInit() {
+    this.visKundeService = true;
+    this.side = false;
+    this.visBetalling = false;
+    this.stillspoarsmaal = false;
+    this.visRegistrering = false;
   }
 }
 
