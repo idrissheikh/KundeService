@@ -30,7 +30,7 @@ namespace Kontakter
                     DBInit.Initialize(services);
 
                     context.Database.EnsureCreated();
-                    // EnsuredDeleted 
+                    // EnsureDeleted 
 
                 }
                 catch (Exception ex)

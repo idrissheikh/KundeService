@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace kontakter.Controllers
 {
+    [Route("api/[controller]")]
     public class MainController : Controller
     {
         private readonly SpoersmaalContext _context;
@@ -18,7 +19,8 @@ namespace kontakter.Controllers
 
 
 
-        [Route("api/alle")]
+        //[Route("api/alle")]
+        [HttpGet("[action]")]
         public JsonResult Index()
         {
             var db = new DBHandler(_context);
@@ -27,7 +29,9 @@ namespace kontakter.Controllers
             return new JsonResult(liste);
         }
 
-        [Route("api/betaling")]
+        //[Route("api/betaling")]
+        [HttpGet("[action]")]
+
         public JsonResult hentBetaling()
         {
             var db = new DBHandler(_context);
@@ -36,7 +40,9 @@ namespace kontakter.Controllers
             return new JsonResult(liste);
         }
 
-        [Route("api/registrering")]
+        //[Route("api/registrering")] når du sender Id  da må være sånn         [HttpGet("[action]/{}"Id)]
+
+        [HttpGet("[action]")]
         public JsonResult hentregistrering()
         {
             var db = new DBHandler(_context);

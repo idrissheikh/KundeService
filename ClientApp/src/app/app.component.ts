@@ -1,21 +1,14 @@
 import { Component } from '@angular/core';
 //import { Sporsmaaler } from '@angular/core';
-import { StilleSpoarsmaalComponent } from './stille-spoarsmaal/stille-spoarsmaal.component';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Http, Response } from '@angular/http';
+import "rxjs/add/operator/map";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
- @Component({
-    selector: 'app-registrering',
-    templateUrl: 'registrering/registrering.component.html',
-    styleUrls: ['registrering/registrering.component.css']
-})
-
-
 export class AppComponent {
   title = 'app';
   visKatogori: boolean;
@@ -24,8 +17,8 @@ export class AppComponent {
   visKundeService: boolean;
   visBetalling: boolean;
   stillspoarsmaal: boolean;
-
-
+  public ofteStrilteSpoersmaal: OfteStilteSpoersmaal[];
+  skjema: FormGroup
 
   visKategoriSide() {
     this.visKatogori = false;
@@ -87,6 +80,49 @@ export class AppComponent {
     this.stillspoarsmaal = false;
     this.visRegistrering = false;
   }
+
+  constructor(private _http: Http, private fb: FormBuilder) {
+    this.skjema = fb.group({
+      Id: [""],
+      KundeNavn: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+      Spoersmaal: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+      Email: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+    });
+
+    this.hetalleSpoarsmaal();
+
+  }
+
+  hetalleSpoarsmaal() {
+    this._http.get("api/Main/Index")
+      .subscribe(result => {
+        this.ofteStrilteSpoersmaal = [];
+        console.log(result);
+        if (result) {
+          for (let spm of result.json()) {
+            this.ofteStrilteSpoersmaal.push(spm);
+          }
+        };
+      });
+};
 }
 
 
+export class Sporsmaaler {
+
+  Id: number;
+  KundeNavn: string;
+  Spoersmaal: string;
+  Email: string; 
+
+}
+
+export class OfteStilteSpoersmaal {
+
+  Id: number;
+  KundeNavn: string;
+  Kategori: string;
+  Spoersmaal: string;
+  Svar: string;
+  Email: string;
+}

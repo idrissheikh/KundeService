@@ -9,7 +9,6 @@ namespace kontakter.Models
     {
         public int Id { get; set; }
         public string KundeNavn { get; set; }
-        public string Kategori { get; set; }
         public string Spoersmaal { get; set; }
         public string Svar { get; set; }
         
