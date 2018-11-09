@@ -1,80 +1,199 @@
 
-
-<div class="card text-center my-5">
-  <!--*ngIf="visKatogori"-->
-  <!--<div class="col-md-6 col-md-offset-1" *ngIf="visSkjema">
+<div>
+  <div class="col-md-6 col-md-offset-1">
+    <!--*ngIf="visKundeService"-->
+    <!--<div *ngIf="laster">Loading...</div>-->
+    <!--*ngIf="visKatogori"-->
+    <!--<div class="col-md-6 col-md-offset-1" *ngIf="visSkjema">
     <div *ngIf="laster">Laster alternativ.....</div>-->
+    <div class="card-body">
+      <div class="jumbotron">
+        <h1 class="display-4">Have Quatstions!</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <hr class="my-4">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text">Har du problemer med Registrering</p>
+                <button type="submit" *ngIf="skjemaStatus=='visRegistrering'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
+                <button class="btn btn-default" (click)="tilbakeTilRegistrering()">Tilbake</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
 
-  <div class="card-body">
-    <div class="jumbotron">
-      <h1 class="display-4">Have Quatstions!</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-      <hr class="my-4">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">Har du problemer med Registrering</p>
-              <a [routerLink]='["./registering"]' class="btn btn-primary">Trykk her</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
+                <p class="card-text">Har du problemer med Betaling</p>
+                <button type="submit" *ngIf="skjemaStatus=='visBetalling'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
+                <button class="btn btn-default" (click)="goTilBetalling()">Tilbake</button>
 
-              <p class="card-text">Har du problemer med Betaling</p>
-              <!--<ul>
-                  <li [routerLinkActive]='["link-active"]'><a [routerLink]='["/registereing"]' (click)='collapse()'><i class="icon-home"></i>Registrer</a></li [routerLinkActive]>
-              </ul>-->
-              <!--<button type="submit" *ngIf="skjemaStatus=='Registrere'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>-->
-              <!--<a href="#" class="btn btn-primary">Trykk her</a>-->
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">Har du problemer med andre ting</p>
-              <button type="submit" *ngIf="skjemaStatus=='Problemer'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-              <!--<a href="#" class="btn btn-primary">Trykk her</a>-->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text">Har du problemer med andre ting</p>
+                <button type="submit" *ngIf="skjemaStatus=='Problemer'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+                <button class="btn btn-default" (click)="Problemer()">Tilbake</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">Har du problemer med andre ting</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text">Har du problemer med andre ting</p>
+                <button type="submit" *ngIf="skjemaStatus=='stillspoarsmaal'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+                <button class="btn btn-default" (click)="LeggeSpoarsmaal()">Tilbake</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="card-footer text-muted">
+    </div>
+    <!--</div>-->
+    <!--<hr />
+    <app-stille-spoarsmaal></app-stille-spoarsmaal>
+    <hr />
+
+    <hr />
+    <app-betaling></app-betaling>
+    <hr />
+
+    <hr />
+    <app-registrering></app-registrering>
+    <hr />-->
+
+
+
+
   </div>
-  <div class="card-footer text-muted">
+</div>
+
+<div>
+  <div class="col-md-6 col-md-offset-1" *ngIf="visRegistrering">
+
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Collapsible Group Item #1
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Collapsible Group Item #2
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Collapsible Group Item #3
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
   </div>
+
+</div>
+
+
+<div class="card text-center my-5">
+  <div class="col-md-6 col-md-offset-1" *ngIf="visBetalling">
+    <div *ngIf="laster">Laster alternativ.....</div>
+
+    <ul class="list-group">
+      <li class="list-group-item">Cras justo odio</li>
+      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Morbi leo risus</li>
+      <li class="list-group-item">Porta ac consectetur ac</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="card text-center my-5">
+  <div class="col-md-6 col-md-offset-1" *ngIf="stillspoarsmaal">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  <link href="https://fonts.googleapis.com/css?family=Oswald:700|Patua+One|Roboto+Condensed:700" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <section id="contact" class="content-section text-center">
+    <div class="contact-section">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>Feel free to shout us by feeling the contact form or visiting our social network sites like Fackebook,Whatsapp,Twitter.</p>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label for="exampleInputName2">Name</label>
+                <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail2">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+              </div>
+              <div class="form-group ">
+                <label for="exampleInputText">Your Message</label>
+                <textarea class="form-control" placeholder="Description"></textarea>
+              </div>
+              <button type="submit" class="btn btn-default">Send Message</button>
+            </form>
+            <hr>
+            <h3>Our Social Sites</h3>
+            <ul class="list-inline banner-social-buttons">
+              <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
+              <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
+              <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!--</div>-->
-
-  <hr />
-  <app-stille-spoarsmaal></app-stille-spoarsmaal>
-  <hr />
-
-  <hr />
-  <app-betaling></app-betaling>
-  <hr />
-
-  <hr />
-  <app-registrering></app-registrering>
-  <hr />
-
 </div>
 
 
 <!--<div>
   <router-module *ngIf="side"> </router-module>
 </div>-->
-
-

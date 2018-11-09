@@ -18,22 +18,61 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 export class AppComponent {
   title = 'app';
-  //visKatogori: boolean;
-  //side: boolean;
-
-  //visKategoriSide() {
-  //  this.visKatogori = false;
-  //  this.side = true;
-
-  //}
-
-  //tilbaketilKategori() {
-  //  this.visKatogori = true;
-  //  this.side = false;
-  //}
+  visKatogori: boolean;
+  side: boolean;
+  visRegistrering: boolean;
+  visKundeService: boolean;
+  visBetalling: boolean;
+  stillspoarsmaal: boolean;
 
 
 
+  visKategoriSide() {
+    this.visKatogori = false;
+    this.side = true;
+    this.visBetalling = false;
+    this.stillspoarsmaal = false;
+
+
+  }
+
+  tilbaketilKategori() {
+    this.visKatogori = true;
+    this.side = false;
+    this.visBetalling = false;
+    this.stillspoarsmaal = false;
+
+
+  }
+
+  tilbakeTilRegistrering() {
+    this.visRegistrering = true;
+    this.visKundeService = false;
+    this.visBetalling = false;
+    this.stillspoarsmaal = false;
+
+
+  }
+
+
+  goTilBetalling() {
+    this.visKatogori = false;
+    this.side = false;
+    this.visBetalling = true;
+    this.stillspoarsmaal = false;
+    this.visRegistrering = false;
+
+
+  }
+
+  LeggeSpoarsmaal() {
+    this.visKatogori = false;
+    this.side = false;
+    this.visBetalling = false;
+    this.stillspoarsmaal = true;
+    this.visRegistrering = false;
+
+  }
 }
 
 
