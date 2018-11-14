@@ -11,6 +11,5 @@ namespace kontakter.Models
         public string Spoersmaal { get; set; }
         public string Svar  { get; set; }
         public string Kategori { get; set; }
-        public string Email { get; set; }
     }
 }

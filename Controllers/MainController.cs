@@ -50,9 +50,19 @@ namespace kontakter.Controllers
 
             return new JsonResult(liste);
         }
-        
-    //      var PersonController = angular.module("personControll",[]);
-    //personContr 
+
+
+        [HttpGet("[action]")]
+        public JsonResult AlleSporsmaaler()
+        {
+            var db = new DBHandler(_context);
+            var liste = db.AlleSporsmaaler();
+
+            return new JsonResult(liste);
+        }
+
+        //      var PersonController = angular.module("personControll",[]);
+        //personContr 
     }
 
   

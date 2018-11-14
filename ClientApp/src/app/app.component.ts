@@ -70,11 +70,14 @@ export class AppComponent {
       KundeNavn: "",
       Spoersmaal: "",
       Email: "",
-      Svar: "",
+      Svar: ""
+
     });
     //this.side = false;
     this.visBetalling = false;
     this.stillspoarsmaal = true;
+
+
     this.visRegistrering = false;
     this.visKundeService = false;
     this.visalle = false;
@@ -105,7 +108,10 @@ export class AppComponent {
           this.visRegistrering = false;
           this.visKundeService = false;
           this.visalle = false;
-        })
+      },
+      error => alert(error),
+      () => console.log("ferdig post-api/Sporsmaaler")
+      );
   }
 
 

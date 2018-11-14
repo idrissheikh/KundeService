@@ -29,8 +29,11 @@ namespace kontakter
         {
             return _context.FAQ.Where(f => f.Kategori == "Registrering").ToList();
         }
-        
 
+        public List<Sporsmaaler> AlleSporsmaaler()
+        {
+            return _context.Spoersmaaler.ToList();
+        }
 
         public List<OfteStilteSpoersmaal> hentspoarsmaaler()
         {

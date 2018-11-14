@@ -1,5 +1,5 @@
 
-<div>
+
   <div class="col-md-6 col-md-offset-1" *ngIf="visKundeService">
 
     <!--*ngIf="visKundeService"-->
@@ -57,7 +57,7 @@
       </div>
     </div>
     <div class="card-footer text-muted">
-    </div>
+   
     <!--</div>-->
     <!--<hr />
     <app-stille-spoarsmaal></app-stille-spoarsmaal>
@@ -211,7 +211,7 @@
 </div>
 
 
-<div class="card text-center my-5" *ngIf="stillspoarsmaal">
+<div class="card text-center my-5" *ngIf="stillspoarsmaal" >
   <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
     <input class="form-control" formControlName="Id" type="hidden" />
     <div class="col-md-6 col-md-offset-1">
@@ -234,21 +234,21 @@
                       Navn er obligatorisk.
                     </p>
                   </div>
-                  <div class="form-group">
-                    <label>Spoersmaal</label>
-                    <input class="form-control" formControlName="Spoersmaal" />
-                    <p class="alert alert-warning" [hidden]="skjema.controls.Spoersmaal.valid || (skjema.controls.Spoersmaal.pristine && !submitted)">
-                      Du glemte å skirve spørsmål?
+                  <div class="form-group" [formGroup]="skjema">
+                    <label>Email</label>
+                    <input class="form-control" formControlName="Email" />
+                    <p class="alert alert-warning" [hidden]="skjema.controls.Email.valid || (skjema.controls.Email.pristine && !submitted)">
+                      Du må skirve Email?
                     </p>
                   </div>
-                  <!--<div class="form-group">
-                    <label>Svar</label>
-                    <input class="form-control" formControlName="Svar" />
-                    <p class="alert alert-warning" [hidden]="skjema.Svar.Spoersmaal.valid || (skjema.controls.Svar.pristine && !submitted)">
-                      Adresse er obligatorisk.
+                  <div class="form-group" [formGroup]="skjema">
+                    <label>Spoersmaal</label>
+                    <input class="form-control" formControlName="Spoersmaal" />
+                    <p class="alert alert-warning" [hidden]="skjema.Spoersmaal.Spoersmaal.valid || (skjema.controls.Spoersmaal.pristine && !submitted)">
+                      Skrive din spørsmål her
                     </p>
-                  </div>-->
-                  <button type="submit" class="btn btn-default">Send Message</button>
+                  </div>
+                  <button type="submit" *ngIf="skjemaStatus=='Registrere'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
                 <hr>
                 <h3>Our Social Sites</h3>
                 <ul class="list-inline banner-social-buttons">
