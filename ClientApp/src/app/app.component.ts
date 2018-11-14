@@ -13,7 +13,6 @@ import { Headers } from "@angular/http";
 export class AppComponent {
   title = 'app';
   visKatogori: boolean;
-  
   visRegistrering: boolean;
   visKundeService: boolean;
   visBetalling: boolean;
@@ -29,7 +28,7 @@ export class AppComponent {
 
 
   visAlleQ() {
-    this.visKatogori = false;
+    //this.visKatogori = false;
     //this.side = false;
     this.visBetalling = false;
     this.stillspoarsmaal = false;
@@ -43,16 +42,12 @@ export class AppComponent {
  
 
   tilbakeTilRegistrering() {
-    this.visRegistrering = true;
-    this.visKundeService = false;
+    this.hentRegistrering();
+    this.visRegistrering = true; 
     this.visBetalling = false;
     this.stillspoarsmaal = false;
     this.visKundeService = false;
     this.visalle = false;
-    this.hentRegistrering();
-
-
-
 
   }
 
@@ -70,6 +65,13 @@ export class AppComponent {
   }
 
   LeggeSpoarsmaal() {
+    this.skjema.setValue({
+      Id: "",
+      KundeNavn: "",
+      Spoersmaal: "",
+      Email: "",
+      Svar: "",
+    });
     //this.side = false;
     this.visBetalling = false;
     this.stillspoarsmaal = true;
@@ -79,6 +81,35 @@ export class AppComponent {
 
 
   }
+
+
+  lagreSpoarsmaal() {
+
+    var lageretSpoersmaaler = new Sporsmaaler();
+
+    lageretSpoersmaaler.KundeNavn = this.skjema.value.KundeNavn;
+    lageretSpoersmaaler.Email = this.skjema.value.Email;
+    lageretSpoersmaaler.Spoersmaal = this.skjema.value.Spoersmaal;
+
+    var body: string = JSON.stringify(lageretSpoersmaaler);
+    var headers = new Headers({ "Content-Type": "application/json" });
+
+    this._http.post("api/Sporsmaaler", body, { headers: headers })
+      //.map(returData => returData.toString())
+      .subscribe(
+        retur => {
+          this.visKatogori = false;
+          //this.side = false;
+          this.visBetalling = false;
+          this.stillspoarsmaal = true;
+          this.visRegistrering = false;
+          this.visKundeService = false;
+          this.visalle = false;
+        })
+  }
+
+
+ 
 
   ngOnInit() {
     this.visKundeService = true;
@@ -95,8 +126,10 @@ export class AppComponent {
       Id: [""],
       KundeNavn: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
       Spoersmaal: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
-      Kategori: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
       Svar: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+      Email: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+
+
 
     });
 
@@ -107,6 +140,7 @@ export class AppComponent {
   }
 
   hentalleSpoarsmaal() {
+    console.log("hentAlleSpørsmål - DONe");
     this._http.get("api/Main/Index")
       .subscribe(result => {
         this.OfteStilteSpoersmaal = [];
@@ -122,7 +156,7 @@ export class AppComponent {
   };
 
   hentRegistrering() {
-    this._http.get("api/Main/registrering")
+    this._http.get("api/Main/HentRegistrering")
       .subscribe(result => {
         this.SpoersmaalRegistrering = [];
         console.log(result);
