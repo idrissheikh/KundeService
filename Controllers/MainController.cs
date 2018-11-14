@@ -32,10 +32,10 @@ namespace kontakter.Controllers
         //[Route("api/betaling")]
         [HttpGet("[action]")]
 
-        public JsonResult hentBetaling()
+        public JsonResult Betaling()
         {
             var db = new DBHandler(_context);
-            var liste = db.hentBetaling();
+            var liste = db.Betaling();
 
             return new JsonResult(liste);
         }
@@ -43,10 +43,10 @@ namespace kontakter.Controllers
         //[Route("api/registrering")] når du sender Id  da må være sånn         [HttpGet("[action]/{}"Id)]
 
         [HttpGet("[action]")]
-        public JsonResult hentregistrering()
+        public JsonResult HentRegistrering()
         {
             var db = new DBHandler(_context);
-            var liste = db.hentregistrering();
+            var liste = db.HentRegistrering();
 
             return new JsonResult(liste);
         }

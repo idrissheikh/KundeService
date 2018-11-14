@@ -20,20 +20,21 @@ namespace kontakter
             return _context.FAQ.ToList();
         }
 
-        public List<OfteStilteSpoersmaal> hentBetaling()
+        public List<OfteStilteSpoersmaal> Betaling()
         {
             return _context.FAQ.Where(f => f.Kategori == "Betaling").ToList();
         }
 
-        public List<OfteStilteSpoersmaal> hentregistrering()
+        public List<OfteStilteSpoersmaal> HentRegistrering()
         {
             return _context.FAQ.Where(f => f.Kategori == "Registrering").ToList();
         }
+        
 
 
         public List<OfteStilteSpoersmaal> hentspoarsmaaler()
         {
-            return _context.FAQ.Where(f => f.Kategori == "Betaling").ToList();
+            return _context.FAQ.Where(f => f.Kategori == "Konto").ToList();
         }
 
     }
