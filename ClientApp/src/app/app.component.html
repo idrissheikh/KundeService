@@ -211,6 +211,28 @@
 </div>
 
 
+<div class="card text-center my-5" *ngIf="visKudeQ">
+  <div class="col-md-6 col-md-offset-1">
+    <div *ngIf="laster">Laster alternativ.....</div>
+
+    <ul class="list-group" *ngFor="let k of Sporsmaaler">
+      <li class="list-group-item">{{k.id}}</li>
+      <li class="list-group-item">{{k.kundeNavn}}</li>
+      <li class="list-group-item">{{k.spoersmaal}}</li>
+      <li class="list-group-item">{{k.email}}</li>
+
+
+
+    </ul>
+
+    <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+    <button class="btn btn-default" (click)="ngOnInit()">Tilbake til KundeSevice</button>
+  </div>
+
+
+</div>
+
+
 <div class="card text-center my-5" *ngIf="stillspoarsmaal" >
   <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
     <input class="form-control" formControlName="Id" type="hidden" />
@@ -227,30 +249,29 @@
             <p>Feel free to shout us by feeling the contact form or visiting our social network sites like Fackebook,Whatsapp,Twitter.</p>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
-                  <div class="form-group" [formGroup]="skjema">
-                    <label>KundeNavn</label>
-                    <input class="form-control" formControlName="KundeNavn" />
-                    <p class="alert alert-warning" [hidden]="skjema.controls.KundeNavn.valid || (skjema.controls.KundeNavn.pristine && !submitted)">
-                      Navn er obligatorisk.
-                    </p>
-                  </div>
-                  <div class="form-group" [formGroup]="skjema">
-                    <label>Email</label>
-                    <input class="form-control" formControlName="Email" />
-                    <p class="alert alert-warning" [hidden]="skjema.controls.Email.valid || (skjema.controls.Email.pristine && !submitted)">
-                      Du må skirve Email?
-                    </p>
-                  </div>
-                  <div class="form-group" [formGroup]="skjema">
-                    <label>Spoersmaal</label>
-                    <input class="form-control" formControlName="Spoersmaal" />
-                    <p class="alert alert-warning" [hidden]="skjema.Spoersmaal.Spoersmaal.valid || (skjema.controls.Spoersmaal.pristine && !submitted)">
-                      Skrive din spørsmål her
-                    </p>
-                  </div>
-                  <button type="submit" *ngIf="skjemaStatus=='Registrere'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-                <hr>
-                <h3>Our Social Sites</h3>
+                <div class="form-group" [formGroup]="skjema">
+                  <label>KundeNavn</label>
+                  <input class="form-control" formControlName="KundeNavn" />
+                  <p class="alert alert-warning" [hidden]="skjema.controls.KundeNavn.valid || (skjema.controls.KundeNavn.pristine && !submitted)">
+                    Navn er obligatorisk.
+                  </p>
+                </div>
+                <div class="form-group" [formGroup]="skjema">
+                  <label>Email</label>
+                  <input class="form-control" formControlName="Email" />
+                  <p class="alert alert-warning" [hidden]="skjema.controls.Email.valid || (skjema.controls.Email.pristine && !submitted)">
+                    Du må skirve Email?
+                  </p>
+                </div>
+                <div class="form-group" [formGroup]="skjema">
+                  <label>Spoersmaal</label>
+                  <input class="form-control" formControlName="Spoersmaal" />
+                  <p class="alert alert-warning" [hidden]="skjema.controls.Spoersmaal.valid || (skjema.controls.Spoersmaal.pristine && !submitted)">
+                    Skrive din spørsmål her
+                  </p>
+                </div>
+                <button type="submit" *ngIf="skjemaStatus=='visKudeQ'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+                <button class="btn btn-default" (click)="visAlleKudeQ()">Tilbake</button><h3>Our Social Sites</h3>
                 <ul class="list-inline banner-social-buttons">
                   <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
                   <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
@@ -262,8 +283,7 @@
         </div>
       </section>
 
-      <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-      <button class="btn btn-default" (click)="ngOnInit()">Tilbake</button>
+     
     </div>
     </form>
 </div>

@@ -17,10 +17,13 @@ export class AppComponent {
   visKundeService: boolean;
   visBetalling: boolean;
   stillspoarsmaal: boolean;
+  visKundeQ: boolean;
 
   public OfteStilteSpoersmaal: OfteStilteSpoersmaal[];
   public Spoersmaalbetaling: OfteStilteSpoersmaal[];
   public SpoersmaalRegistrering: OfteStilteSpoersmaal[];
+  public Sporsmaaler: Sporsmaaler[];
+
 
   visalle: boolean;
   laster: boolean;
@@ -35,6 +38,7 @@ export class AppComponent {
     this.visKundeService = false;
     this.visalle = true;
     this.visRegistrering = false;
+    this.visKundeQ = false;
 
     this.hentalleSpoarsmaal();
   }
@@ -48,6 +52,8 @@ export class AppComponent {
     this.stillspoarsmaal = false;
     this.visKundeService = false;
     this.visalle = false;
+    this.visKundeQ = false;
+
 
   }
 
@@ -60,7 +66,21 @@ export class AppComponent {
     this.visRegistrering = false;
     this.visKundeService = false;
     this.visalle = false;
+    this.visKundeQ = false;
 
+
+
+  }
+
+  visAlleKudeQ() {
+    this.lagreSpoarsmaal()
+    this.visKundeQ = true;
+    this.visBetalling = false;
+    //this.side = false;
+    this.stillspoarsmaal = false;
+    this.visRegistrering = false;
+    this.visKundeService = false;
+    this.visalle = false;
 
   }
 
@@ -76,8 +96,7 @@ export class AppComponent {
     //this.side = false;
     this.visBetalling = false;
     this.stillspoarsmaal = true;
-
-
+    this.visKundeQ = false;
     this.visRegistrering = false;
     this.visKundeService = false;
     this.visalle = false;
@@ -97,20 +116,21 @@ export class AppComponent {
     var body: string = JSON.stringify(lageretSpoersmaaler);
     var headers = new Headers({ "Content-Type": "application/json" });
 
-    this._http.post("api/Sporsmaaler", body, { headers: headers })
+    this._http.post("api/Main/AlleSporsmaaler", body, { headers: headers })
       //.map(returData => returData.toString())
       .subscribe(
-        retur => {
+      retur => {
+        this.visKundeQ = true;
           this.visKatogori = false;
           //this.side = false;
           this.visBetalling = false;
-          this.stillspoarsmaal = true;
+          this.stillspoarsmaal = false;
           this.visRegistrering = false;
           this.visKundeService = false;
           this.visalle = false;
       },
       error => alert(error),
-      () => console.log("ferdig post-api/Sporsmaaler")
+      () => console.log("ferdig post-api/Main/AlleSporsmaaler")
       );
   }
 
@@ -142,6 +162,9 @@ export class AppComponent {
     this.hentalleSpoarsmaal();
     this.hentBetaling();
     this.hentRegistrering();
+    this.hentKundeSpoarsmaaler();
+    this.lagreSpoarsmaal();
+
 
   }
 
@@ -194,6 +217,22 @@ export class AppComponent {
   
             //this.hentalleSpoarsmaal();
 
+          }
+        };
+      });
+  };
+
+  hentKundeSpoarsmaaler() {
+    console.log("hentAlleSpørsmål - DONe");
+    this._http.get("api/Main/alleSporsmaaler")
+      .subscribe(result => {
+        this.Sporsmaaler = [];
+        console.log(result);
+        if (result) {
+          for (let spm of result.json()) {
+            this.Sporsmaaler.push(spm);
+            this.laster = false
+              ;
           }
         };
       });

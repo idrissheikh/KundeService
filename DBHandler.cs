@@ -40,5 +40,8 @@ namespace kontakter
             return _context.FAQ.Where(f => f.Kategori == "Konto").ToList();
         }
 
+
+     
+
     }
 }

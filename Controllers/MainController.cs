@@ -19,6 +19,8 @@ namespace kontakter.Controllers
 
 
 
+     
+
         //[Route("api/alle")]
         [HttpGet("[action]")]
         public JsonResult Index()
