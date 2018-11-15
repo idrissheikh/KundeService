@@ -308,7 +308,7 @@ export class OfteStilteSpoersmaal {
 
   Id: number;
   Kategori: string;
-  Spoersmaal: string;
+  spoersmaal: string;
   Svar: string;
   Email: string;
   Like: number;
