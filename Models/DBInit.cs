@@ -29,7 +29,9 @@ namespace kontakter
                     "Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et." +
                     " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
                     " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
-                    " you probably haven't heard of them accusamus labore sustainable VHS."
+                    " you probably haven't heard of them accusamus labore sustainable VHS.",
+                    //Like = 4,
+                    //DisLike = 2,
                 });
 
                 context.Add(new OfteStilteSpoersmaal
@@ -41,7 +43,9 @@ namespace kontakter
                    "Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et." +
                    " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
                    " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
-                   " you probably haven't heard of them accusamus labore sustainable VHS."
+                   " you probably haven't heard of them accusamus labore sustainable VHS.",
+                    //Like = 14,
+                    //DisLike = 2,
                 });
 
 
@@ -54,7 +58,9 @@ namespace kontakter
                    "Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et." +
                    " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
                    " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
-                   " you probably haven't heard of them accusamus labore sustainable VHS."
+                   " you probably haven't heard of them accusamus labore sustainable VHS.",
+                    //Like = 4,
+                    //DisLike = 12,
                 });
 
                 context.Add(new OfteStilteSpoersmaal
@@ -66,7 +72,9 @@ namespace kontakter
                "Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et." +
                " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
                " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
-               " you probably haven't heard of them accusamus labore sustainable VHS."
+               " you probably haven't heard of them accusamus labore sustainable VHS.",
+                    //Like = 4,
+                    //DisLike = 22,
                 });
 
                 context.Add(new OfteStilteSpoersmaal
@@ -78,7 +86,9 @@ namespace kontakter
              "Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et." +
              " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
              " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
-             " you probably haven't heard of them accusamus labore sustainable VHS."
+             " you probably haven't heard of them accusamus labore sustainable VHS.",
+                    //Like = 44,
+                    //DisLike = 2,
                 });
                 context.SaveChanges();
 

@@ -1,63 +1,63 @@
 
 
-  <div class="col-md-6 col-md-offset-1" *ngIf="visKundeService">
+<div class="col-md-6 col-md-offset-1" *ngIf="visKundeService">
 
-    <!--*ngIf="visKundeService"-->
-    <div *ngIf="laster">Loading...</div>
-    <!--*ngIf="visKatogori"-->
-    <!--<div class="col-md-6 col-md-offset-1" *ngIf="visSkjema">
-    <div *ngIf="laster">Laster alternativ.....</div>-->
-    <div class="card-body">
-      <div class="jumbotron">
-        <h1 class="display-4">Have Questions!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-                <p class="card-text">Har du problemer med Registrering</p>
-                <button type="submit" *ngIf="skjemaStatus=='visRegistrering'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-                <button class="btn btn-default" (click)="tilbakeTilRegistrering()">Tilbake</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-
-                <p class="card-text">Har du problemer med Betaling</p>
-                <button type="submit" *ngIf="skjemaStatus=='visBetalling'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-                <button class="btn btn-default" (click)="goTilBetalling()">Tilbake</button>
-
-              </div>
+  <!--*ngIf="visKundeService"-->
+  <div *ngIf="laster">Loading...</div>
+  <!--*ngIf="visKatogori"-->
+  <!--<div class="col-md-6 col-md-offset-1" *ngIf="visSkjema">
+  <div *ngIf="laster">Laster alternativ.....</div>-->
+  <div class="card-body">
+    <div class="jumbotron">
+      <h1 class="display-4">Have Questions!</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Har du problemer med Registrering</p>
+              <button type="submit" *ngIf="skjemaStatus=='visRegistrering'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
+              <button class="btn btn-default" (click)="tilbakeTilRegistrering()">Tilbake</button>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-                <p class="card-text">Har du problemer med andre ting</p>
-                <button type="submit" *ngIf="skjemaStatus=='visalle'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-                <button class="btn btn-default" (click)="visAlleQ()">Tilbake</button>
-              </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+
+              <p class="card-text">Har du problemer med Betaling</p>
+              <button type="submit" *ngIf="skjemaStatus=='visBetalling'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
+              <button class="btn btn-default" (click)="goTilBetalling()">Tilbake</button>
+
             </div>
           </div>
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-                <p class="card-text">Har du problemer med andre ting</p>
-                <button type="submit" *ngIf="skjemaStatus=='stillspoarsmaal'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-                <button class="btn btn-default" (click)="LeggeSpoarsmaal()">Tilbake</button>
-              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Har du problemer med andre ting</p>
+              <button type="submit" *ngIf="skjemaStatus=='visalle'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
+              <button class="btn btn-default" (click)="visAlleQ()">Tilbake</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">Har du problemer med andre ting</p>
+              <button type="submit" *ngIf="skjemaStatus=='stillspoarsmaal'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+              <button class="btn btn-default" (click)="LeggeSpoarsmaal()">Tilbake</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="card-footer text-muted">
-   
+  </div>
+  <div class="card-footer text-muted">
+
     <!--</div>-->
     <!--<hr />
     <app-stille-spoarsmaal></app-stille-spoarsmaal>
@@ -233,8 +233,8 @@
 </div>
 
 
-<div class="card text-center my-5" *ngIf="stillspoarsmaal" >
-  <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
+<div class="card text-center my-5" *ngIf="stillspoarsmaal">
+  <form [formGroup]="skjema">
     <input class="form-control" formControlName="Id" type="hidden" />
     <div class="col-md-6 col-md-offset-1">
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -271,7 +271,7 @@
                   </p>
                 </div>
                 <button type="submit" *ngIf="skjemaStatus=='visKudeQ'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-                <button class="btn btn-default" (click)="visAlleKudeQ()">Tilbake</button><h3>Our Social Sites</h3>
+                <button class="btn btn-default" (click)="lagreSpoarsmaal()">Tilbake</button><h3>Our Social Sites</h3>
                 <ul class="list-inline banner-social-buttons">
                   <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
                   <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
@@ -283,10 +283,49 @@
         </div>
       </section>
 
-     
     </div>
-    </form>
+  </form>
+  <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+  <button class="btn btn-default" (click)="ngOnInit()">Tilbake til KundeSevice</button>
 </div>
 
 
 
+<!--<h3 class="text-warning ">Ofte stilte spørsmål om bestilling</h3>
+<div class="accordion" id="accordionExample">
+  <div *ngFor="let k of Spoersmaalbetaling"
+       class="card">
+    <div class="card-header text-danger" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link text-dark"
+                type="button" data-toggle="collapse"
+                [attr.data-target]="'#collapse'+faq.id" aria-expanded="true"
+                aria-controls="collapseOne">
+          <h4> <strong> <i class="fas fa-caret-right"></i>{{k.id}} </strong>  </h4>
+        </button>
+      </h5>
+    </div>
+    <div id="collapse{{ k.spoersmaal}}" class="collapse show"
+         aria-labelledby="headingOne"
+         data-parent="#accordionExample">
+      <div class="card-body">
+        {{k.svar}} <br />
+                   <h4>
+                     <span class="text-warning">Var svaret nyttig? </span> &emsp;
+                     {{k.numberOfLikes}} <button class=" btn-primary text-white"
+                                                 (click)="oekAntallLiker(faq.id, faq)">
+                       <i class="fas fa-thumbs-up"></i>
+                     </button> &emsp;
+                     {{k.numberOfLikes}}  <button class="btn-danger text-white"
+                                                  (click)="oekAntallMisliker(faq.id, faq)">
+                       <i class="fas fa-thumbs-down"></i>
+                     </button> &emsp;
+                   </h4>
+      </div>
+    </div>
+
+  </div>
+</div>-->
+<!--<p>{{ numberOfLikes}}</p>
+<button (click)="likeButtonClick()">Like</button>
+<button (click)="DislikeButtonClick()">disLike</button>-->

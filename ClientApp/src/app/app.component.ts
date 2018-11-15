@@ -18,6 +18,7 @@ export class AppComponent {
   visBetalling: boolean;
   stillspoarsmaal: boolean;
   visKundeQ: boolean;
+  numberOfLikes: number = 0;
 
   public OfteStilteSpoersmaal: OfteStilteSpoersmaal[];
   public Spoersmaalbetaling: OfteStilteSpoersmaal[];
@@ -43,11 +44,11 @@ export class AppComponent {
     this.hentalleSpoarsmaal();
   }
 
- 
+
 
   tilbakeTilRegistrering() {
     this.hentRegistrering();
-    this.visRegistrering = true; 
+    this.visRegistrering = true;
     this.visBetalling = false;
     this.stillspoarsmaal = false;
     this.visKundeService = false;
@@ -73,7 +74,8 @@ export class AppComponent {
   }
 
   visAlleKudeQ() {
-    this.lagreSpoarsmaal()
+    this.hentKundeSpoarsmaaler()
+  
     this.visKundeQ = true;
     this.visBetalling = false;
     //this.side = false;
@@ -85,15 +87,15 @@ export class AppComponent {
   }
 
   LeggeSpoarsmaal() {
-    this.skjema.setValue({
-      Id: "",
-      KundeNavn: "",
-      Spoersmaal: "",
-      Email: "",
-      Svar: ""
+    //this.skjema.setValue({
+    //  Id: "",
+    //  KundeNavn: "",
+    //  Spoersmaal: "",
+    //  Email: "",
+    //  Svar: ""
 
-    });
-    //this.side = false;
+    //});
+    this.skjema.markAsPristine();
     this.visBetalling = false;
     this.stillspoarsmaal = true;
     this.visKundeQ = false;
@@ -104,6 +106,21 @@ export class AppComponent {
 
   }
 
+  hentKundeSpoarsmaaler() {
+    console.log("hentAlleSpørsmål - DONe");
+    this._http.get("api/kundeSporsmaaler")
+      .subscribe(result => {
+        this.Sporsmaaler = [];
+        console.log(result);
+        if (result) {
+          for (let spm of result.json()) {
+            this.Sporsmaaler.push(spm);
+            this.laster = false;
+          }
+        };
+      });
+  };
+
 
   lagreSpoarsmaal() {
 
@@ -113,14 +130,15 @@ export class AppComponent {
     lageretSpoersmaaler.Email = this.skjema.value.Email;
     lageretSpoersmaaler.Spoersmaal = this.skjema.value.Spoersmaal;
 
+  
     var body: string = JSON.stringify(lageretSpoersmaaler);
     var headers = new Headers({ "Content-Type": "application/json" });
 
-    this._http.post("api/Main/AlleSporsmaaler", body, { headers: headers })
+    this._http.post("api/Main/LeggTil", body, { headers: headers })
       //.map(returData => returData.toString())
       .subscribe(
-      retur => {
-        this.visKundeQ = true;
+        retur => {
+          this.visKundeQ = true;
           this.visKatogori = false;
           //this.side = false;
           this.visBetalling = false;
@@ -128,14 +146,14 @@ export class AppComponent {
           this.visRegistrering = false;
           this.visKundeService = false;
           this.visalle = false;
-      },
-      error => alert(error),
-      () => console.log("ferdig post-api/Main/AlleSporsmaaler")
+        },
+        error => alert(error),
+      () => console.log("ferdig post-api/kundeSporsmaaler")
       );
   }
 
 
- 
+
 
   ngOnInit() {
     this.visKundeService = true;
@@ -148,7 +166,7 @@ export class AppComponent {
   }
 
   constructor(private _http: Http, private fb: FormBuilder) {
-    this.skjema= fb.group({
+    this.skjema = fb.group({
       Id: [""],
       KundeNavn: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
       Spoersmaal: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
@@ -163,7 +181,7 @@ export class AppComponent {
     this.hentBetaling();
     this.hentRegistrering();
     this.hentKundeSpoarsmaaler();
-    this.lagreSpoarsmaal();
+  
 
 
   }
@@ -212,9 +230,9 @@ export class AppComponent {
           for (let sob of result.json()) {
             this.Spoersmaalbetaling.push(sob);
             this.laster = false;
-           
-       //this.visBetalling = true;
-  
+
+            //this.visBetalling = true;
+
             //this.hentalleSpoarsmaal();
 
           }
@@ -222,24 +240,16 @@ export class AppComponent {
       });
   };
 
-  hentKundeSpoarsmaaler() {
-    console.log("hentAlleSpørsmål - DONe");
-    this._http.get("api/Main/alleSporsmaaler")
-      .subscribe(result => {
-        this.Sporsmaaler = [];
-        console.log(result);
-        if (result) {
-          for (let spm of result.json()) {
-            this.Sporsmaaler.push(spm);
-            this.laster = false
-              ;
-          }
-        };
-      });
-  };
-
-
+  
 }
+//  likeButtonClick() {
+//    this.numberOfLikes++;
+//  }
+
+//  DislikeButtonClick() {
+//    this.numberOfLikes++;
+//  }
+//}
 
 
 export class Sporsmaaler {
@@ -249,6 +259,9 @@ export class Sporsmaaler {
   Spoersmaal: string;
   Svar: string;
   Email: string;
+  
+  
+
 
 }
 
@@ -260,4 +273,7 @@ export class OfteStilteSpoersmaal {
   Spoersmaal: string;
   Svar: string;
   Email: string;
+  Like: number;
+  DisLike: number;
+
 }

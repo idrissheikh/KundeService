@@ -40,8 +40,41 @@ namespace kontakter
             return _context.FAQ.Where(f => f.Kategori == "Konto").ToList();
         }
 
+      
 
-     
+        // Lagre henvendelse
+        public bool postHenvendelse(Sporsmaaler Sporsmaaler)
+        {
+            try
+            {
+                _context.Spoersmaaler.Add(Sporsmaaler);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+
+            }
+
+        }
+
+        // Vis alle henvendelser
+        public List<Sporsmaaler> hentAlleHenvendelser()
+        {
+            List<Sporsmaaler> henvendelser;
+            try
+            {
+                henvendelser = _context.Spoersmaaler.ToList();
+            }
+            catch
+            {
+                henvendelser = null;
+
+            }
+            return henvendelser;
+        }
+
 
     }
 }

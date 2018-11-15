@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using kontakter.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace kontakter.Controllers
@@ -65,6 +68,31 @@ namespace kontakter.Controllers
 
         //      var PersonController = angular.module("personControll",[]);
         //personContr 
+
+        // POST api/henvendelse
+        [HttpPost("[action]")]
+        public HttpResponseMessage LeggTil([FromBody]Sporsmaaler Sporsmaaler)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var db = new DBHandler(_context);
+                bool OK = db.postHenvendelse(Sporsmaaler);
+                if (OK)
+                {
+                    return new HttpResponseMessage()
+                    {
+                        StatusCode = HttpStatusCode.OK
+                    };
+
+                }
+            }
+            return new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Content = new StringContent("Kunne ikke sette inn henvendelse i DB")
+            };
+        }
     }
 
   
