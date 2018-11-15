@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Http, Response } from '@angular/http';
 import "rxjs/add/operator/map";
 import { Headers } from "@angular/http";
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-root',
@@ -74,7 +75,7 @@ export class AppComponent {
   }
 
   visAlleKudeQ() {
-    this.hentKundeSpoarsmaaler()
+    this.hentKundeSpoarsmaaler();
   
     this.visKundeQ = true;
     this.visBetalling = false;
@@ -83,6 +84,8 @@ export class AppComponent {
     this.visRegistrering = false;
     this.visKundeService = false;
     this.visalle = false;
+
+
 
   }
 
@@ -102,23 +105,33 @@ export class AppComponent {
     this.visRegistrering = false;
     this.visKundeService = false;
     this.visalle = false;
+    this.visKundeQ = false;
+
 
 
   }
 
   hentKundeSpoarsmaaler() {
-    console.log("hentAlleSpørsmål - DONe");
-    this._http.get("api/kundeSporsmaaler")
+    this._http.get("/api/Main/AlleSporsmaaler")
+      .map(retur => retur.json())
       .subscribe(result => {
-        this.Sporsmaaler = [];
         console.log(result);
-        if (result) {
-          for (let spm of result.json()) {
-            this.Sporsmaaler.push(spm);
-            this.laster = false;
-          }
-        };
+        this.Sporsmaaler = result;
+        console.log("etter api kallet " + this.Sporsmaaler.length);
+        this.visKundeQ = true;
       });
+   
+     
+/*
+ *
+ *   this.laster = false;
+            this.visKundeQ = true;
+            this.visKatogori = false;
+            this.visBetalling = false;
+            this.stillspoarsmaal = false;
+            this.visRegistrering = false;
+            this.visKundeService = false;
+            this.visalle = false;*/
   };
 
 
@@ -126,9 +139,9 @@ export class AppComponent {
 
     var lageretSpoersmaaler = new Sporsmaaler();
 
-    lageretSpoersmaaler.KundeNavn = this.skjema.value.KundeNavn;
-    lageretSpoersmaaler.Email = this.skjema.value.Email;
-    lageretSpoersmaaler.Spoersmaal = this.skjema.value.Spoersmaal;
+    lageretSpoersmaaler.kundeNavn = this.skjema.value.kundeNavn;
+    lageretSpoersmaaler.email = this.skjema.value.email;
+    lageretSpoersmaaler.spoersmaal = this.skjema.value.spoersmaal;
 
   
     var body: string = JSON.stringify(lageretSpoersmaaler);
@@ -146,6 +159,9 @@ export class AppComponent {
           this.visRegistrering = false;
           this.visKundeService = false;
           this.visalle = false;
+
+
+
         },
         error => alert(error),
       () => console.log("ferdig post-api/kundeSporsmaaler")
@@ -154,24 +170,25 @@ export class AppComponent {
 
 
 
-
+  /* her bruker jeg  ngOnIt() metode som viser bare KundeService div og  andre  diver blir deaktiv*/
   ngOnInit() {
     this.visKundeService = true;
-    //this.side = false;
     this.visBetalling = false;
     this.stillspoarsmaal = false;
     this.visRegistrering = false;
     this.visalle = false;
+    this.visKundeQ = false;
+
+    //this.hentKundeSpoarsmaaler();
 
   }
 
   constructor(private _http: Http, private fb: FormBuilder) {
     this.skjema = fb.group({
-      Id: [""],
-      KundeNavn: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
-      Spoersmaal: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
-      Svar: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
-      Email: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+      id: [""],
+      kundeNavn: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+      spoersmaal: [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
+      email: [null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])],
 
 
 
@@ -180,12 +197,11 @@ export class AppComponent {
     this.hentalleSpoarsmaal();
     this.hentBetaling();
     this.hentRegistrering();
-    this.hentKundeSpoarsmaaler();
   
 
 
   }
-
+  /*dette   henter alle ofte Spørsmåler som er deklaret i DBInit */ 
   hentalleSpoarsmaal() {
     console.log("hentAlleSpørsmål - DONe");
     this._http.get("api/Main/Index")
@@ -201,6 +217,7 @@ export class AppComponent {
         };
       });
   };
+    /*dette   henter Registrering spørsmåler som er deklaret i DBInit */
 
   hentRegistrering() {
     this._http.get("api/Main/HentRegistrering")
@@ -220,6 +237,7 @@ export class AppComponent {
         };
       });
   };
+      /*dette   henter betaliing spørsmåler som er deklaret i DBInit */
 
   hentBetaling() {
     this._http.get("api/Main/betaling")
@@ -254,11 +272,10 @@ export class AppComponent {
 
 export class Sporsmaaler {
 
-  Id: number;
-  KundeNavn: string;
-  Spoersmaal: string;
-  Svar: string;
-  Email: string;
+  id: number;
+  kundeNavn: string;
+  spoersmaal: string;
+  email: string;
   
   
 
@@ -268,7 +285,6 @@ export class Sporsmaaler {
 export class OfteStilteSpoersmaal {
 
   Id: number;
-  KundeNavn: string;
   Kategori: string;
   Spoersmaal: string;
   Svar: string;
