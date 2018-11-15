@@ -73,7 +73,7 @@ namespace kontakter.Controllers
         [HttpPost("[action]")]
         public HttpResponseMessage LeggTil([FromBody]Sporsmaaler Sporsmaaler)
         {
-
+            // commet
             if (ModelState.IsValid)
             {
                 var db = new DBHandler(_context);
