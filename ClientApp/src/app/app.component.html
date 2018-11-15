@@ -1,6 +1,6 @@
 
 
-<div class="col-md-6 col-md-offset-1" *ngIf="visKundeService">
+<div class="col-md-8 mt-5 col-md-offset-1" *ngIf="visKundeService">
 
   <!--*ngIf="visKundeService"-->
   <div *ngIf="laster">Loading...</div>
@@ -12,17 +12,17 @@
       <h1 class="display-4">Have Questions!</h1>
       <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
       <hr class="my-4">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">Har du problemer med Registrering</p>
+      <div class="row ">
+        <div class="col-sm-6 text-center ">
+          <div class="card ">
+            <div class="card-body bg-secondary">
+              <p class="card-text">Har du problemer med Registrering? </p>
               <button type="submit" *ngIf="skjemaStatus=='visRegistrering'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-              <button class="btn btn-default" (click)="tilbakeTilRegistrering()">Tilbake</button>
+              <button class="btn btn-secondary text-center text-white" (click)="tilbakeTilRegistrering()"> <i class="fas fa-book-open"></i>  Les Oftestilte spørsmål om Registrering </button>
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 text-center">
           <div class="card">
             <div class="card-body">
 
@@ -33,7 +33,10 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+        </div>
+      <div class="row">
+
+        <div class="col-sm-6 text-center">
           <div class="card">
             <div class="card-body">
 
@@ -44,27 +47,48 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">Har du problemer med andre ting</p>
-              <button type="submit" *ngIf="skjemaStatus=='visalle'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-              <button class="btn btn-default" (click)="visAlleQ()">Tilbake</button>
+          <div class="col-sm-6 text-center">
+
+
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text">Har du problemer med andre ting</p>
+                <button type="submit" *ngIf="skjemaStatus=='stillspoarsmaal'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+                <button class="btn btn-default" (click)="LeggeSpoarsmaal()">Tilbake</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text">Har du problemer med andre ting</p>
-              <button type="submit" *ngIf="skjemaStatus=='stillspoarsmaal'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-              <button class="btn btn-default" (click)="LeggeSpoarsmaal()">Tilbake</button>
-            </div>
-          </div>
-        </div>
       </div>
+     
+      <div></div>
+      <div class="col-sm-12 bg-secondary mt-5 ">
+        <input type="hidden">
+        <input class="form-control mr-sm-2" type="text"
+               [(ngModel)]="sokeOrd"
+               placeholder="Søk spørsmål... " aria-label="Search">
+      </div>
+
+      <!--Vis søkeresultat-->
+      <div class="card text-center mt-3" >
+        <div class="col-md-10 col-md-offset-1 mt-5">
+        
+
+          <ul class="list-group" *ngFor="let k of OfteStilteSpoersmaal | filter:sokeOrd">
+            <li class="list-group-item">{{k.spoersmaal}}</li>
+            <li class="list-group-item">{{k.svar}}</li>
+
+
+          </ul>
+
+          <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+         
+        </div>
+
+
+      </div>
+
+
+
     </div>
   </div>
   <div class="card-footer text-muted">
@@ -173,7 +197,7 @@
     </ul>
 
     <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-    <button class="btn btn-default" (click)="ngOnInit()">Tilbake til KundeSevice</button>
+    <button class="btn btn-secondary text-white" (click)="ngOnInit()">   Tilbake til KundeSevice</button>
   </div>
 
 
@@ -194,13 +218,13 @@
     </ul>
 
     <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-    <button class="btn btn-default" (click)="ngOnInit()">Tilbake til KundeSevice</button>
+    <button class="btn btn-secondary text-white " (click)="ngOnInit()">  <i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
   </div>
 
 
 </div>
 
-<div class="card text-center my-5" *ngIf="visBetalling">
+<!--<div class="card text-center my-5" *ngIf="visBetalling">
   <div class="col-md-6 col-md-offset-1">
     <div *ngIf="laster">Laster alternativ.....</div>
 
@@ -219,7 +243,7 @@
   </div>
 
 
-</div>
+</div>-->
 
 
 <div class="card text-center my-5" *ngIf="visKundeQ">
@@ -340,3 +364,42 @@
 <!--<p>{{ numberOfLikes}}</p>
 <button (click)="likeButtonClick()">Like</button>
 <button (click)="DislikeButtonClick()">disLike</button>-->
+
+
+<div class="card text-center my-5" *ngIf="visBetalling">
+  <h3 class="text-warning ">Ofte stilte spørsmål om bestilling</h3>
+  <div class="accordion" id="accordionExample">
+    <div *ngFor="let faq of Spoersmaalbetaling"
+         class="card">
+      <div class="card-header text-danger" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link text-dark"
+                  type="button" data-toggle="collapse"
+                  [attr.data-target]="'#collapse'+faq.id" aria-expanded="true"
+                  aria-controls="collapseOne">
+            <h4> <strong> <i class="fas fa-caret-right"></i>{{faq.spoersmaal}} </strong>  </h4>
+          </button>
+        </h5>
+      </div>
+      <div id="collapse{{ faq.id}}" class="collapse show"
+           aria-labelledby="headingOne"
+           data-parent="#accordionExample">
+        <div class="card-body">
+          {{faq.svar}} <br />
+                       <h4>
+                         <span class="text-warning">Var svaret nyttig? </span> &emsp;
+                         {{faq.like}} <button class=" btn-primary text-white"
+                                              (click)="vedLike(faq.id, faq)">
+                           <i class="fas fa-thumbs-up"></i>
+                         </button> &emsp;
+                         {{faq.disLike}}  <button class="btn-danger text-white"
+                                                         (click)="vedDislike(faq.id, faq)">
+                           <i class="fas fa-thumbs-down"></i>
+                         </button> &emsp;
+                       </h4>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>

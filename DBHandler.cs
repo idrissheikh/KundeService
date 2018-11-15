@@ -30,17 +30,27 @@ namespace kontakter
             return _context.FAQ.Where(f => f.Kategori == "Registrering").ToList();
         }
 
-        public List<Sporsmaaler> AlleSporsmaaler()
-        {
-            return _context.Spoersmaaler.ToList();
-        }
-
         public List<OfteStilteSpoersmaal> hentspoarsmaaler()
         {
             return _context.FAQ.Where(f => f.Kategori == "Konto").ToList();
         }
 
-      
+        public List<Sporsmaaler> AlleSporsmaaler()
+        {
+            List<Sporsmaaler> alle = null;
+            try
+            {
+                alle = _context.Spoersmaaler.ToList();
+                return alle;
+
+            }
+            catch
+            {
+                return alle;
+
+            }
+
+        }
 
         // Lagre henvendelse
         public bool postHenvendelse(Sporsmaaler Sporsmaaler)
@@ -75,6 +85,39 @@ namespace kontakter
             return henvendelser;
         }
 
+        public Boolean like(int id, OfteStilteSpoersmaal ofteStilteSpoersmaal) {
+            try
+            {
 
+               var faq = _context.FAQ.Find(id);
+                faq.Like++;
+                _context.SaveChanges();
+                return true;
+
+            }
+            catch
+            {
+                return false;
+
+            }
+        }
+
+        public Boolean Dislike(int id, OfteStilteSpoersmaal oft)
+        {
+            try
+            {
+
+                var faq = _context.FAQ.Find(id);
+                faq.DisLike++;
+                _context.SaveChanges();
+                return true;
+
+            }
+            catch
+            {
+                return false;
+
+            }
+        }
     }
 }

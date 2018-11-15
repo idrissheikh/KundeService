@@ -93,6 +93,49 @@ namespace kontakter.Controllers
                 Content = new StringContent("Kunne ikke sette inn henvendelse i DB")
             };
         }
+
+        [HttpPut("[action]")]
+        public HttpResponseMessage VedLike(int id, [FromBody]OfteStilteSpoersmaal faq)
+        {
+            var db = new DBHandler(_context);
+            if (db.like(faq.Id, faq))
+            {
+                return new HttpResponseMessage()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+            }
+            return new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Content = new StringContent("Kunne ikke sette endre antall liker i FAQ")
+            };
+        }
+
+
+
+
+
+
+
+        [HttpPut("[action]")]
+        public HttpResponseMessage VedDisLike(int id, [FromBody]OfteStilteSpoersmaal faq)
+        {
+            var db = new DBHandler(_context);
+            if (db.Dislike(faq.Id, faq))
+            {
+                return new HttpResponseMessage()
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
+            }
+            return new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Content = new StringContent("Kunne ikke sette endre antall misliker i FAQ")
+            };
+        }
+
     }
 
   

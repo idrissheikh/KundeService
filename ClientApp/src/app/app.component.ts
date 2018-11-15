@@ -20,6 +20,8 @@ export class AppComponent {
   stillspoarsmaal: boolean;
   visKundeQ: boolean;
   numberOfLikes: number = 0;
+  sokeOrd: string;
+ 
 
   public OfteStilteSpoersmaal: OfteStilteSpoersmaal[];
   public Spoersmaalbetaling: OfteStilteSpoersmaal[];
@@ -258,7 +260,27 @@ export class AppComponent {
       });
   };
 
+
+  vedLike(id, faq) {
+    console.log("vedlike: jeg ble trykket ");
+
+    return this._http.put("/api/Main/VedLike", faq)
+      .map(returData => returData.json())
+      .subscribe(retur => {
+        this.hentBetaling();
+      });
+  }
+
+  vedDislike(id, faq) {
+    console.log("veddislike: jeg ble trykket ");
+    return this._http.put("/api/Main/VedDisLike/", faq)
+      .map(returData => returData.json())
+      .subscribe(retur => {
+        this.hentBetaling();
+      });
   
+  }
+
 }
 //  likeButtonClick() {
 //    this.numberOfLikes++;
