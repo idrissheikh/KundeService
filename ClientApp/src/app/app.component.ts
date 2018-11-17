@@ -268,6 +268,7 @@ export class AppComponent {
       .map(returData => returData.json())
       .subscribe(retur => {
         this.hentBetaling();
+        this.hentRegistrering();
       });
   }
 
@@ -277,6 +278,7 @@ export class AppComponent {
       .map(returData => returData.json())
       .subscribe(retur => {
         this.hentBetaling();
+        this.hentRegistrering();
       });
   
   }

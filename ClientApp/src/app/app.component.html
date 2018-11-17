@@ -1,6 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Contakt service</a>
 
 
-<div class="col-md-8 mt-5 col-md-offset-1" *ngIf="visKundeService">
+  <div class=" mt-5 form-inline my-2 my-lg-0">
+    <input type="hidden">
+    <input class="form-control mr-sm-2" type="text"
+           [(ngModel)]="sokeOrd"
+           placeholder="Søk spørsmål... " aria-label="Search">
+  </div>
+</nav>
+
+
+<div class="col-md-8 mt-5 col-md-offset-1 text-xl-center" *ngIf="visKundeService">
 
   <!--*ngIf="visKundeService"-->
   <div *ngIf="laster">Loading...</div>
@@ -9,8 +20,12 @@
   <div *ngIf="laster">Laster alternativ.....</div>-->
   <div class="card-body">
     <div class="jumbotron">
-      <h1 class="display-4">Have Questions!</h1>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <h1 class="display-4 text-center">Har du noe spørsmål!</h1>
+      <p class="lead text-center ">
+        Velkommen til kundeservicen,
+        her finner du svar på oftestiltes spørsmåler,
+        og hvis du ikke finner det du leter etter, kan du også legge til alle spørsmåler du lurer på og vil bli besvart innen dager.
+      </p>
       <hr class="my-4">
       <div class="row ">
         <div class="col-sm-6 text-center ">
@@ -18,255 +33,206 @@
             <div class="card-body bg-secondary">
               <p class="card-text">Har du problemer med Registrering? </p>
               <button type="submit" *ngIf="skjemaStatus=='visRegistrering'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-              <button class="btn btn-secondary text-center text-white" (click)="tilbakeTilRegistrering()"> <i class="fas fa-book-open"></i>  Les Oftestilte spørsmål om Registrering </button>
+              <button class="btn btn-secondary text-center text-white" (click)="tilbakeTilRegistrering()"> <i class="fas fa-book-open"></i>   Les Oftestilte spørsmåler om Registrering </button>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 text-center">
-          <div class="card">
-            <div class="card-body">
-
+        <div class="col-sm-6 text-center ">
+          <div class="card ">
+            <div class="card-body bg-secondary">
               <p class="card-text">Har du problemer med Betaling</p>
-              <button type="submit" *ngIf="skjemaStatus=='visBetalling'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-              <button class="btn btn-default" (click)="goTilBetalling()">Tilbake</button>
+              <button type="submit" *ngIf="skjemaStatus=='visBetalling'" [disabled]="!skjema.valid" class="btn btn-primary">Betaling</button>
+              <button class="btn btn-secondary text-center text-white" (click)="goTilBetalling()"><i class="fas fa-book-open"></i>   Les Oftestilte spørsmåler om betaling</button>
 
             </div>
           </div>
         </div>
-        </div>
+      </div>
       <div class="row">
 
-        <div class="col-sm-6 text-center">
-          <div class="card">
-            <div class="card-body">
-
-              <p class="card-text">alle sporsmåler fra kunder</p>
+        <div class="col-sm-6 text-center ">
+          <div class="card ">
+            <div class="card-body bg-secondary">
+              <p class="card-text">Alle sporsmåler fra kunder</p>
               <button type="submit" *ngIf="skjemaStatus=='visKudeQ'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-              <button class="btn btn-default" (click)="visAlleKudeQ()">Tilbake</button>
+              <button class="btn btn-secondary text-center text-white" (click)="visAlleKudeQ()"><i class="fas fa-book-open"></i>    Les andre spørsmåler fra kunde</button>
 
             </div>
           </div>
         </div>
-          <div class="col-sm-6 text-center">
-
-
-            <div class="card">
-              <div class="card-body">
-                <p class="card-text">Har du problemer med andre ting</p>
-                <button type="submit" *ngIf="skjemaStatus=='stillspoarsmaal'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-                <button class="btn btn-default" (click)="LeggeSpoarsmaal()">Tilbake</button>
-              </div>
+        <div class="col-sm-6 text-center ">
+          <div class="card ">
+            <div class="card-body bg-secondary">
+              <p class="card-text">Har du problemer med andre ting</p>
+              <button type="submit" *ngIf="skjemaStatus=='stillspoarsmaal'" [disabled]="!skjema.valid" class="btn btn-primary"> har du forsett ikke fang svar</button>
+              <button class="btn btn-secondary text-center text-white" (click)="LeggeSpoarsmaal()"><i class="fas fa-book-open"></i>    Trykke her</button>
             </div>
           </div>
-      </div>
-     
-      <div></div>
-      <div class="col-sm-12 bg-secondary mt-5 ">
-        <input type="hidden">
-        <input class="form-control mr-sm-2" type="text"
-               [(ngModel)]="sokeOrd"
-               placeholder="Søk spørsmål... " aria-label="Search">
+        </div>
       </div>
 
       <!--Vis søkeresultat-->
-      <div class="card text-center mt-3" >
-        <div class="col-md-10 col-md-offset-1 mt-5">
-        
+      <div class="card text-center mt-3">
+        <h3 class="text-primary">Disse er ofte stilte spørsmåler </h3>
+        <div class="accordion" id="accordionExample">
+          <div *ngFor="let faq of OfteStilteSpoersmaal | filter:sokeOrd" class="card">
+            <div class="card-header text-danger" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link text-dark"
+                        type="button" data-toggle="collapse"
+                        [attr.data-target]="'#collapse'+faq.id" aria-expanded="true"
+                        aria-controls="collapseOne">
+                  <h4> <strong> {{faq.OfteStilteSpoersmaal}} </strong>  </h4>
+                  <div class="card-body bg-light text-primary">
+                    {{faq.spoersmaal}} <br />
+                  </div>
+                </button>
+              </h5>
+            </div>
+            <div class="card-body">
+              {{faq.svar}} <br />
 
-          <ul class="list-group" *ngFor="let k of OfteStilteSpoersmaal | filter:sokeOrd">
-            <li class="list-group-item">{{k.spoersmaal}}</li>
-            <li class="list-group-item">{{k.svar}}</li>
+              <h4>
+                <span class="text-primary">var dette nyttig? </span> &emsp;
+                {{faq.like}} <button class=" btn-primary text-white"
+                                     (click)="vedLike(faq.id, faq)">
+                  <i class="fas fa-thumbs-up"></i>
+                </button> &emsp;
+                {{faq.disLike}}  <button class="btn-danger text-white"
+                                         (click)="vedDislike(faq.id, faq)">
+                  <i class="fas fa-thumbs-down"></i>
+                </button> &emsp;
+              </h4>
 
-
-          </ul>
-
-          <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-         
+            </div>
+          </div>
         </div>
-
-
       </div>
-
-
-
     </div>
-  </div>
-  <div class="card-footer text-muted">
-
-    <!--</div>-->
-    <!--<hr />
-    <app-stille-spoarsmaal></app-stille-spoarsmaal>
-    <hr />
-
-    <hr />
-    <app-betaling></app-betaling>
-    <hr />
-
-    <hr />
-    <app-registrering></app-registrering>
-    <hr />-->
-
-
-
-
   </div>
 </div>
 
-<!--<div>
-  <div class="col-md-6 col-md-offset-1" style="margin-top:10%;" *ngIf="visRegistrering">
-
-
-    <div class="panel-group" id="accordion">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-              Collapsible Group 1
-            </a>
-          </h4>
-        </div>
-        <div id="collapse1" class="panel-collapse collapse in">
-          <div class="panel-body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-              Collapsible Group 2
-            </a>
-          </h4>
-        </div>
-        <div id="collapse2" class="panel-collapse collapse">
-          <div class="panel-body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <tbody *ngFor="let kunde of alleKunder">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                Collapsible Group 3
-              </a>
-          </h4>
-        </div>
-        <div id="collapse3" class="panel-collapse collapse" style="margin-top:auto">
-          <div class="panel-body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-    <button class="btn btn-default" (click)="ngOnInit()">Tilbake</button>
-
-  </div>
-
-
-
-
-</div>-->
 
 
 <div class="card text-center my-5" *ngIf="visalle">
-  <div class="col-md-6 col-md-offset-1">
-    <div *ngIf="laster">Laster alternativ.....</div>
+  <h3 class="text-primary ">Desse er ofte stilte spørsmåler </h3>
+  <div class="accordion" id="accordionExample">
+    <div *ngFor="let faq of OfteStilteSpoersmaal"
+         class="card">
+      <div class="card-header text-danger" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link text-dark"
+                  type="button" data-toggle="collapse"
+                  [attr.data-target]="'#collapse'+faq.id" aria-expanded="true"
+                  aria-controls="collapseOne">
+            <h4> <strong> <i class="fas fa-caret-right"></i>{{faq.spoersmaal}} </strong>  </h4>
+          </button>
+        </h5>
+      </div>
+      <div id="collapse{{ faq.id}}" class="collapse show"
+           aria-labelledby="headingOne"
+           data-parent="#accordionExample">
+        <div class="card-body">
+          {{faq.svar}} <br />
+          <h4>
+            <span class="text-primary">var dette nyttig? </span> &emsp;
+            {{faq.like}} <button class=" btn-primary text-white"
+                                 (click)="vedLike(faq.id, faq)">
+              <i class="fas fa-thumbs-up"></i>
+            </button> &emsp;
+            {{faq.disLike}}  <button class="btn-danger text-white"
+                                     (click)="vedDislike(faq.id, faq)">
+              <i class="fas fa-thumbs-down"></i>
+            </button> &emsp;
+          </h4>
+        </div>
+      </div>
 
-    <ul class="list-group" *ngFor="let k of OfteStilteSpoersmaal">
-      <li class="list-group-item">{{k.id}}</li>
-      <li class="list-group-item">{{k.kategori}}</li>
-      <li class="list-group-item">{{k.spoersmaal}}</li>
-      <li class="list-group-item">{{k.svar}}</li>
-
-
-
-    </ul>
-
-    <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-    <button class="btn btn-secondary text-white" (click)="ngOnInit()">   Tilbake til KundeSevice</button>
+    </div>
   </div>
-
-
+  <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+  <button class="btn btn-secondary text-white" (click)="ngOnInit()"><i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
 </div>
 
 <div class="card text-center my-5" *ngIf="visRegistrering">
-  <div class="col-md-6 col-md-offset-1">
-    <div *ngIf="laster">Laster alternativ.....</div>
+  <h3 class="text-primary ">Desse er ofte stilte spørsmåler om Registrering </h3>
+  <div class="accordion" id="accordionExample">
+    <div *ngFor="let faq of SpoersmaalRegistrering"
+         class="card">
+      <div class="card-header text-danger" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link text-dark"
+                  type="button" data-toggle="collapse"
+                  [attr.data-target]="'#collapse'+faq.id" aria-expanded="true"
+                  aria-controls="collapseOne">
+            <h4> <strong> <i class="fas fa-caret-right"></i>{{faq.spoersmaal}} </strong>  </h4>
+          </button>
+        </h5>
+      </div>
+      <div id="collapse{{ faq.id}}" class="collapse show"
+           aria-labelledby="headingOne"
+           data-parent="#accordionExample">
+        <div class="card-body">
+          {{faq.svar}} <br />
+          <h4>
+            <span class="text-primary">var dette nyttig? </span> &emsp;
+            {{faq.like}} <button class=" btn-primary text-white"
+                                 (click)="vedLike(faq.id, faq)">
+              <i class="fas fa-thumbs-up"></i>
+            </button> &emsp;
+            {{faq.disLike}}  <button class="btn-danger text-white"
+                                     (click)="vedDislike(faq.id, faq)">
+              <i class="fas fa-thumbs-down"></i>
+            </button> &emsp;
+          </h4>
+        </div>
+      </div>
 
-    <ul class="list-group" *ngFor="let k of SpoersmaalRegistrering">
-      <li class="list-group-item">{{k.id}}</li>
-      <li class="list-group-item">{{k.kategori}}</li>
-      <li class="list-group-item">{{k.spoersmaal}}</li>
-      <li class="list-group-item">{{k.svar}}</li>
-
-
-
-    </ul>
-
-    <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-    <button class="btn btn-secondary text-white " (click)="ngOnInit()">  <i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
+    </div>
   </div>
-
-
+  <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+  <button class="btn btn-secondary text-white" (click)="ngOnInit()"><i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
 </div>
 
-<!--<div class="card text-center my-5" *ngIf="visBetalling">
-  <div class="col-md-6 col-md-offset-1">
-    <div *ngIf="laster">Laster alternativ.....</div>
 
-    <ul class="list-group" *ngFor="let k of Spoersmaalbetaling">
-      <li class="list-group-item">{{k.id}}</li>
-      <li class="list-group-item">{{k.kategori}}</li>
-      <li class="list-group-item">{{k.spoersmaal}}</li>
-      <li class="list-group-item">{{k.svar}}</li>
-
-
-
-    </ul>
-
-    <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-    <button class="btn btn-default" (click)="ngOnInit()">Tilbake til KundeSevice</button>
-  </div>
-
-
-</div>-->
 
 
 <div class="card text-center my-5" *ngIf="visKundeQ">
-  <div class="col-md-6 col-md-offset-1">
-    <div *ngIf="laster">Laster alternativ.....</div>
-
-    <ul class="list-group" *ngFor="let k of Sporsmaaler">
-      <li class="list-group-item">{{k.id}}</li>
-      <li class="list-group-item">{{k.kundeNavn}}</li>
-      <li class="list-group-item">{{k.spoersmaal}}</li>
-      <li class="list-group-item">{{k.email}}</li>
-
-
-
-    </ul>
-
-    <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-    <button class="btn btn-default" (click)="ngOnInit()">Tilbake til KundeSevice</button>
+  <div class="col-sm-8 mx-auto">
+    <h3 class="text-primary text-center "> <strong> Spoersmåler fra kunder</strong> </h3>
+    <div *ngFor="let faq of Sporsmaaler" class="card  text-dark">
+      <div class="card-body ">
+        <ul class="list-group ">
+          <li class="list-group-item ">
+            <h5>
+              <strong>
+                <i class="fas fa-user"></i>
+                Fullt navn:   {{faq.kundeNavn}}
+              </strong>
+            </h5>
+          </li>
+          <li class="list-group-item ">
+            <h5>
+              <strong>
+                <i class="fas fa-envelope"></i>
+                Epost:   {{faq.email}}
+              </strong>
+            </h5>
+          </li>
+          <li class="list-group-item ">
+            <h5>
+              <strong>
+                <i class="fas fa-question"></i>    Spørsmål:  {{faq.spoersmaal}}
+              </strong>
+            </h5>  <br>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-
-
+  <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+  <button class="btn btn-secondary text-white" (click)="ngOnInit()"><i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
 </div>
-
 
 <div class="card text-center my-5" *ngIf="stillspoarsmaal">
   <form [formGroup]="skjema">
@@ -281,7 +247,7 @@
         <div class="contact-section">
           <div class="container">
             <h2>Contact Us</h2>
-            <p>Feel free to shout us by feeling the contact form or visiting our social network sites like Fackebook,Whatsapp,Twitter.</p>
+            <p>kan du også legge til alle spørsmåler du lurer på og vil bli besvart innen dager.</p>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
                 <div class="form-group" [formGroup]="skjema">
@@ -306,7 +272,7 @@
                   </p>
                 </div>
                 <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-                <button class="btn btn-default" (click)="lagreSpoarsmaal()">Tilbake</button><h3>Our Social Sites</h3>
+                <button class="btn btn-default" (click)="lagreSpoarsmaal()">Sende</button><h3>Our Social Sites</h3>
                 <ul class="list-inline banner-social-buttons">
                   <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
                   <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
@@ -321,53 +287,15 @@
     </div>
   </form>
   <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-  <button class="btn btn-default" (click)="ngOnInit()">Tilbake til KundeSevice</button>
+  <button class="btn btn-secondary text-white" (click)="ngOnInit()"><i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
 </div>
 
 
 
-<!--<h3 class="text-warning ">Ofte stilte spørsmål om bestilling</h3>
-<div class="accordion" id="accordionExample">
-  <div *ngFor="let k of Spoersmaalbetaling"
-       class="card">
-    <div class="card-header text-danger" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link text-dark"
-                type="button" data-toggle="collapse"
-                [attr.data-target]="'#collapse'+faq.id" aria-expanded="true"
-                aria-controls="collapseOne">
-          <h4> <strong> <i class="fas fa-caret-right"></i>{{k.id}} </strong>  </h4>
-        </button>
-      </h5>
-    </div>
-    <div id="collapse{{ k.spoersmaal}}" class="collapse show"
-         aria-labelledby="headingOne"
-         data-parent="#accordionExample">
-      <div class="card-body">
-        {{k.svar}} <br />
-                   <h4>
-                     <span class="text-warning">Var svaret nyttig? </span> &emsp;
-                     {{k.numberOfLikes}} <button class=" btn-primary text-white"
-                                                 (click)="oekAntallLiker(faq.id, faq)">
-                       <i class="fas fa-thumbs-up"></i>
-                     </button> &emsp;
-                     {{k.numberOfLikes}}  <button class="btn-danger text-white"
-                                                  (click)="oekAntallMisliker(faq.id, faq)">
-                       <i class="fas fa-thumbs-down"></i>
-                     </button> &emsp;
-                   </h4>
-      </div>
-    </div>
-
-  </div>
-</div>-->
-<!--<p>{{ numberOfLikes}}</p>
-<button (click)="likeButtonClick()">Like</button>
-<button (click)="DislikeButtonClick()">disLike</button>-->
 
 
 <div class="card text-center my-5" *ngIf="visBetalling">
-  <h3 class="text-warning ">Ofte stilte spørsmål om bestilling</h3>
+  <h3 class="text-primary ">Desse er ofte stilte spørsmåler om betaling </h3>
   <div class="accordion" id="accordionExample">
     <div *ngFor="let faq of Spoersmaalbetaling"
          class="card">
@@ -386,20 +314,21 @@
            data-parent="#accordionExample">
         <div class="card-body">
           {{faq.svar}} <br />
-                       <h4>
-                         <span class="text-warning">Var svaret nyttig? </span> &emsp;
-                         {{faq.like}} <button class=" btn-primary text-white"
-                                              (click)="vedLike(faq.id, faq)">
-                           <i class="fas fa-thumbs-up"></i>
-                         </button> &emsp;
-                         {{faq.disLike}}  <button class="btn-danger text-white"
-                                                         (click)="vedDislike(faq.id, faq)">
-                           <i class="fas fa-thumbs-down"></i>
-                         </button> &emsp;
-                       </h4>
+          <h4>
+            <span class="text-primary">var dette nyttig? </span> &emsp;
+            {{faq.like}} <button class=" btn-primary text-white"
+                                 (click)="vedLike(faq.id, faq)">
+              <i class="fas fa-thumbs-up"></i>
+            </button> &emsp;
+            {{faq.disLike}}  <button class="btn-danger text-white"
+                                     (click)="vedDislike(faq.id, faq)">
+              <i class="fas fa-thumbs-down"></i>
+            </button> &emsp;
+          </h4>
         </div>
       </div>
-
     </div>
   </div>
-  </div>
+  <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
+  <button class="btn btn-secondary text-white" (click)="ngOnInit()"><i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
+</div>
