@@ -22,12 +22,12 @@ namespace kontakter
                 context.Add(new OfteStilteSpoersmaal
                 {
 
-                    Kategori = "Konto",
+                    Kategori = "Betaling",
                     Spoersmaal = "Hvordan oppretter jeg en konto?",
-                    Svar = " Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid." +
-                    " 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. " +
+                    Svar = "An overwhelming 80 per cent of workers have no idea how many years they must pay National Insurance to get a full state pension in old age." +
+                    " A third are also unaware that missing NI payments during career breaks could affect their state pension - although more than half of workers take at least one year off work during their lives. " +
                     "Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et." +
-                    " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
+                    " Workers need to make 35 years of NI contributions to get the full state pension, which is currently £155.65 a week for anyone retiring from April this year onwards." +
                     " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
                     " you probably haven't heard of them accusamus labore sustainable VHS.",
                     //Like = 4,
@@ -37,12 +37,11 @@ namespace kontakter
                 context.Add(new OfteStilteSpoersmaal
                 {
                     Kategori = "Betaling",
-                    Spoersmaal = "Er medlemskapet gratis?",
-                    Svar = " det kan hende at de går mange waqaser på sammen måte ." +
-                   " 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. " +
+                    Spoersmaal = "tar dere kash?",
+                    Svar = "Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et." +
+                    " A third are also unaware that missing NI payments during career breaks could affect their state pension - although more than half of workers take at least one year off work during their lives. " +
                    "Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et." +
-                   " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
-                   " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
+                    "An overwhelming 80 per cent of workers have no idea how many years they must pay National Insurance to get a full state pension in old age." + " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
                    " you probably haven't heard of them accusamus labore sustainable VHS.",
                     //Like = 14,
                     //DisLike = 2,
@@ -73,8 +72,7 @@ namespace kontakter
                " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
                " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
                " you probably haven't heard of them accusamus labore sustainable VHS.",
-                    //Like = 4,
-                    //DisLike = 22,
+                
                 });
 
                 context.Add(new OfteStilteSpoersmaal
@@ -87,8 +85,20 @@ namespace kontakter
              " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
              " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
              " you probably haven't heard of them accusamus labore sustainable VHS.",
-                    //Like = 44,
-                    //DisLike = 2,
+                  
+                });
+
+                context.Add(new OfteStilteSpoersmaal
+                {
+                    Kategori = "Registrering",
+                    Spoersmaal = "Kan jeg betale med vipps?",
+                    Svar = "MPs and pension industry experts have called for all over-50s to be sent annual automatic state pension statements to combat lack ." +
+             " The Government has resisted on the grounds of cost, the inefficiency of sending out millions of letters, and because it already uses other measures to raise awareness. " +
+             "Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et." +
+             " Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident." +
+             " Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt" +
+             " you probably haven't heard of them accusamus labore sustainable VHS.",
+
                 });
                 context.SaveChanges();
 

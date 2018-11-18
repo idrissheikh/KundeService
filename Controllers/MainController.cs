@@ -22,7 +22,7 @@ namespace kontakter.Controllers
 
 
 
-     
+     /* lager list av alle oftestilte spoersmåler*/
 
         //[Route("api/alle")]
         [HttpGet("[action]")]
@@ -34,6 +34,9 @@ namespace kontakter.Controllers
             return new JsonResult(liste);
         }
 
+
+        /* lager list av betaling spoersmaaler*/
+
         //[Route("api/betaling")]
         [HttpGet("[action]")]
 
@@ -44,6 +47,8 @@ namespace kontakter.Controllers
 
             return new JsonResult(liste);
         }
+
+        /* lager list av registrerint spoersmaaler*/
 
         //[Route("api/registrering")] når du sender Id  da må være sånn         [HttpGet("[action]/{}"Id)]
 
@@ -57,6 +62,9 @@ namespace kontakter.Controllers
         }
 
 
+        /* lager list av Kunde spoersmaaler*/
+
+
         [HttpGet("[action]")]
         public JsonResult AlleSporsmaaler()
         {
@@ -66,9 +74,10 @@ namespace kontakter.Controllers
             return new JsonResult(liste);
         }
 
-        //      var PersonController = angular.module("personControll",[]);
-        //personContr 
+     
 
+    
+        /*legge til metode */
         // POST api/henvendelse
         [HttpPost("[action]")]
         public HttpResponseMessage LeggTil([FromBody]Sporsmaaler Sporsmaaler)
@@ -94,6 +103,8 @@ namespace kontakter.Controllers
             };
         }
 
+        /*metodet som okes  når vi trykker på like*/
+
         [HttpPut("[action]")]
         public HttpResponseMessage VedLike(int id, [FromBody]OfteStilteSpoersmaal faq)
         {
@@ -116,6 +127,7 @@ namespace kontakter.Controllers
 
 
 
+        /*metodet som okes  når vi trykker på dislike*/
 
 
         [HttpPut("[action]")]
