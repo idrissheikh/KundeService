@@ -22,7 +22,7 @@ export class AppComponent {
   numberOfLikes: number = 0;
   sokeOrd: string;
  
-
+   /*Har ddefinerer jeg alle klasser og katogori jeg har definert*/
   public OfteStilteSpoersmaal: OfteStilteSpoersmaal[];
   public Spoersmaalbetaling: OfteStilteSpoersmaal[];
   public SpoersmaalRegistrering: OfteStilteSpoersmaal[];
@@ -47,7 +47,7 @@ export class AppComponent {
     this.hentalleSpoarsmaal();
   }
 
-
+      /* her bruker jeg  tilbakeTilRegistrering() metode som viser bare spørsmåler om registrering  og andre diver blir deaktiv*/
 
   tilbakeTilRegistrering() {
     this.hentRegistrering();
@@ -61,6 +61,7 @@ export class AppComponent {
 
   }
 
+    /* her bruker jeg  goTilBetalling() metode som viser bare spørsmåler om betaling  og andre diver blir deaktiv*/
 
   goTilBetalling() {
     this.hentBetaling();
@@ -75,7 +76,7 @@ export class AppComponent {
 
 
   }
-
+  /* her bruker jeg  visAlleKudeQ() metode som viser bare spørsmåler fra kunde og andre diver blir deaktiv*/
   visAlleKudeQ() {
     this.hentKundeSpoarsmaaler();
   
@@ -113,6 +114,7 @@ export class AppComponent {
 
   }
 
+  /* for  å hente kunde sørsmaaler */
   hentKundeSpoarsmaaler() {
     this._http.get("/api/Main/AlleSporsmaaler")
       .map(retur => retur.json())
@@ -124,19 +126,10 @@ export class AppComponent {
       });
    
      
-/*
- *
- *   this.laster = false;
-            this.visKundeQ = true;
-            this.visKatogori = false;
-            this.visBetalling = false;
-            this.stillspoarsmaal = false;
-            this.visRegistrering = false;
-            this.visKundeService = false;
-            this.visalle = false;*/
+
   };
 
-
+  /* dette legge metode som  brukes når vi legger  spøsmål i skjema */
   lagreSpoarsmaal() {
 
     var lageretSpoersmaaler = new Sporsmaaler();
@@ -172,7 +165,7 @@ export class AppComponent {
 
 
 
-  /* her bruker jeg  ngOnIt() metode som viser bare KundeService div og  andre  diver blir deaktiv*/
+  /* her bruker jeg  ngOnIt() metode som viser bare KundeService div og  andre diver blir deaktiv*/
   ngOnInit() {
     this.visKundeService = true;
     this.visBetalling = false;
@@ -231,9 +224,7 @@ export class AppComponent {
             this.SpoersmaalRegistrering.push(rob);
             this.laster = false;
 
-            //this.visBetalling = true;
-
-            //this.hentalleSpoarsmaal();
+           
 
           }
         };
@@ -251,16 +242,15 @@ export class AppComponent {
             this.Spoersmaalbetaling.push(sob);
             this.laster = false;
 
-            //this.visBetalling = true;
-
-            //this.hentalleSpoarsmaal();
+            
 
           }
         };
       });
   };
 
-
+  /* dette metode til like metodet
+   */
   vedLike(id, faq) {
     console.log("vedlike: jeg ble trykket ");
 
@@ -272,6 +262,7 @@ export class AppComponent {
       });
   }
 
+  /* dette metode til dislike metodet */
   vedDislike(id, faq) {
     console.log("veddislike: jeg ble trykket ");
     return this._http.put("/api/Main/VedDisLike/", faq)
@@ -284,14 +275,7 @@ export class AppComponent {
   }
 
 }
-//  likeButtonClick() {
-//    this.numberOfLikes++;
-//  }
 
-//  DislikeButtonClick() {
-//    this.numberOfLikes++;
-//  }
-//}
 
 
 export class Sporsmaaler {
