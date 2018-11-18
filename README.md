@@ -8,6 +8,7 @@
   når du skriver  i textbox "Serch textbox" resulataten kommer ned. og hvis du leger et spørsmål da du kan skjekke om det er i databasen eller 
   ikke ved trykk på knappen i kundeService side (les andre spørsmåler fra kunde).
   Jeg har også kaper til like  og disLike  som funker helt riktig.
+  serch metodet:  det matcher med ord i sprøsmmåler og det hente alle spørsmåler som inneholder samme ord er bukstaver.
   
   
   
