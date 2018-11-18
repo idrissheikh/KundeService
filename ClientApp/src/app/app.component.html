@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="visKundeService">
   <a class="navbar-brand" href="#">Contakt service</a>
 
 
@@ -12,6 +12,7 @@
 
 
 <div class="col-md-8 mt-5 col-md-offset-1 text-xl-center" *ngIf="visKundeService">
+
 
   <!--*ngIf="visKundeService"-->
   <div *ngIf="laster">Loading...</div>
@@ -54,7 +55,7 @@
           <div class="card ">
             <div class="card-body bg-secondary">
               <p class="card-text">Alle sporsmåler fra kunder</p>
-              <button type="submit" *ngIf="skjemaStatus=='visKudeQ'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
+              <button type="submit" *ngIf="skjemaStatus=='visKundeQ'" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
               <button class="btn btn-secondary text-center text-white" (click)="visAlleKudeQ()"><i class="fas fa-book-open"></i>    Les andre spørsmåler fra kunde</button>
 
             </div>
@@ -114,45 +115,32 @@
 
 
 
-<div class="card text-center my-5" *ngIf="visalle">
-  <h3 class="text-primary ">Desse er ofte stilte spørsmåler </h3>
-  <div class="accordion" id="accordionExample">
-    <div *ngFor="let faq of OfteStilteSpoersmaal"
-         class="card">
-      <div class="card-header text-danger" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link text-dark"
-                  type="button" data-toggle="collapse"
-                  [attr.data-target]="'#collapse'+faq.id" aria-expanded="true"
-                  aria-controls="collapseOne">
-            <h4> <strong> <i class="fas fa-caret-right"></i>{{faq.spoersmaal}} </strong>  </h4>
-          </button>
-        </h5>
-      </div>
-      <div id="collapse{{ faq.id}}" class="collapse show"
-           aria-labelledby="headingOne"
-           data-parent="#accordionExample">
-        <div class="card-body">
-          {{faq.svar}} <br />
-          <h4>
-            <span class="text-primary">var dette nyttig? </span> &emsp;
-            {{faq.like}} <button class=" btn-primary text-white"
-                                 (click)="vedLike(faq.id, faq)">
-              <i class="fas fa-thumbs-up"></i>
-            </button> &emsp;
-            {{faq.disLike}}  <button class="btn-danger text-white"
-                                     (click)="vedDislike(faq.id, faq)">
-              <i class="fas fa-thumbs-down"></i>
-            </button> &emsp;
-          </h4>
-        </div>
-      </div>
 
+
+
+
+<div class="col-md-8 mt-5 col-md-offset-1 text-xl-center" *ngIf="visKundeQ">
+  <h3 class="text-primary ">Disse er spørmåler fra kunde </h3>
+  <div *ngFor="let faq of Sporsmaaler" class="card  text-dark">
+   
+
+
+
+    <div class="card-body text-left bg-secondary text-light"> <h4> Navn:         {{faq.kundeNavn}} </h4></div>
+    <div class="card-body text-left bg-light text-secondary"> <h4> Email:         {{faq.email}} </h4></div>
+    <div class="card-body text-left bg-light text-secondary"> <h4> Spørssmål:     {{faq.spoersmaal}}  </h4> </div>
     </div>
-  </div>
+
+
   <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
   <button class="btn btn-secondary text-white" (click)="ngOnInit()"><i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
 </div>
+
+
+
+
+
+
 
 <div class="card text-center my-5" *ngIf="visRegistrering">
   <h3 class="text-primary ">Desse er ofte stilte spørsmåler om Registrering </h3>
@@ -197,44 +185,7 @@
 
 
 
-<div class="card text-center my-5" *ngIf="visKundeQ">
-  <div class="col-sm-8 mx-auto">
-    <h3 class="text-primary text-center "> <strong> Spoersmåler fra kunder</strong> </h3>
-    <div *ngFor="let faq of Sporsmaaler" class="card  text-dark">
-      <div class="card-body ">
-        <ul class="list-group ">
-          <li class="list-group-item ">
-            <h5>
-              <strong>
-                <i class="fas fa-user"></i>
-                Fullt navn:   {{faq.kundeNavn}}
-              </strong>
-            </h5>
-          </li>
-          <li class="list-group-item ">
-            <h5>
-              <strong>
-                <i class="fas fa-envelope"></i>
-                Epost:   {{faq.email}}
-              </strong>
-            </h5>
-          </li>
-          <li class="list-group-item ">
-            <h5>
-              <strong>
-                <i class="fas fa-question"></i>    Spørsmål:  {{faq.spoersmaal}}
-              </strong>
-            </h5>  <br>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
-  <button class="btn btn-secondary text-white" (click)="ngOnInit()"><i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
-</div>
-
-<div class="card text-center my-5" *ngIf="stillspoarsmaal">
+<div class="card text-center my-5 bg-secondary" *ngIf="stillspoarsmaal">
   <form [formGroup]="skjema">
     <input class="form-control" formControlName="id" type="hidden" />
     <div class="col-md-6 col-md-offset-1">

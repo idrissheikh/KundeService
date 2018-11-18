@@ -152,14 +152,14 @@ export class AppComponent {
     this._http.post("api/Main/LeggTil", body, { headers: headers })
       //.map(returData => returData.toString())
       .subscribe(
-        retur => {
-          this.visKundeQ = true;
+      retur => {
+        this.visKundeQ = false;
           this.visKatogori = false;
           //this.side = false;
           this.visBetalling = false;
           this.stillspoarsmaal = false;
           this.visRegistrering = false;
-          this.visKundeService = false;
+          this.visKundeService = true;
           this.visalle = false;
 
 
