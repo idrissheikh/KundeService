@@ -1,3 +1,4 @@
+<!-- det er nav bar som inneholder textbox som slik at kunde kan søke etter noe-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="visKundeService">
   <a class="navbar-brand" href="#">Contakt service</a>
 
@@ -10,15 +11,13 @@
   </div>
 </nav>
 
+<!-- det viser main side aller main div som viser altrnativ til kunde-->
 
 <div class="col-md-8 mt-5 col-md-offset-1 text-xl-center" *ngIf="visKundeService">
 
 
-  <!--*ngIf="visKundeService"-->
   <div *ngIf="laster">Loading...</div>
-  <!--*ngIf="visKatogori"-->
-  <!--<div class="col-md-6 col-md-offset-1" *ngIf="visSkjema">
-  <div *ngIf="laster">Laster alternativ.....</div>-->
+
   <div class="card-body">
     <div class="jumbotron">
       <h1 class="display-4 text-center">Har du noe spørsmål!</h1>
@@ -72,9 +71,8 @@
         </div>
       </div>
 
-      <!--Vis søkeresultat-->
+      <!-- view når  du søker på noe-->
       <div class="card text-center mt-3">
-        <h3 class="text-primary">Disse er ofte stilte spørsmåler </h3>
         <div class="accordion" id="accordionExample">
           <div *ngFor="let faq of OfteStilteSpoersmaal | filter:sokeOrd" class="card">
             <div class="card-header text-danger" id="headingOne">
@@ -117,20 +115,16 @@
 
 
 
-
+<!-- det viser  aller spørsmåller som kunde har skrev-->
 
 <div class="col-md-8 mt-5 col-md-offset-1 text-xl-center" *ngIf="visKundeQ">
   <h3 class="text-primary ">Disse er spørmåler fra kunde </h3>
   <div *ngFor="let faq of Sporsmaaler" class="card  text-dark">
-   
-
-
 
     <div class="card-body text-left bg-secondary text-light"> <h4> Navn:         {{faq.kundeNavn}} </h4></div>
     <div class="card-body text-left bg-light text-secondary"> <h4> Email:         {{faq.email}} </h4></div>
     <div class="card-body text-left bg-light text-secondary"> <h4> Spørssmål:     {{faq.spoersmaal}}  </h4> </div>
-    </div>
-
+  </div>
 
   <button type="submit" *ngIf="skjemaStatus=='visKundeService'" [disabled]="!skjema.valid" class="btn btn-primary">Problemer</button>
   <button class="btn btn-secondary text-white" (click)="ngOnInit()"><i class="fas fa-angle-double-left"></i>   Tilbake til KundeSevice</button>
@@ -140,8 +134,7 @@
 
 
 
-
-
+<!-- det viser  aller spørsmåller om Registrering-->
 <div class="card text-center my-5" *ngIf="visRegistrering">
   <h3 class="text-primary ">Desse er ofte stilte spørsmåler om Registrering </h3>
   <div class="accordion" id="accordionExample">
@@ -184,8 +177,9 @@
 
 
 
+<!-- den div viser veiw som til legg metode  da kan kunde leg spørsmål når det trykk på send knap-->
 
-<div class="card text-center my-5 bg-secondary" *ngIf="stillspoarsmaal">
+<div class="card text-center my-5 bg-secondary text-light" *ngIf="stillspoarsmaal">
   <form [formGroup]="skjema">
     <input class="form-control" formControlName="id" type="hidden" />
     <div class="col-md-6 col-md-offset-1">
@@ -244,6 +238,7 @@
 
 
 
+<!-- det viser  aller spørsmåller om betaling-->
 
 <div class="card text-center my-5" *ngIf="visBetalling">
   <h3 class="text-primary ">Desse er ofte stilte spørsmåler om betaling </h3>
